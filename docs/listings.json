@@ -1,0 +1,33 @@
+[
+  {
+    "listing": "/projects/ai/index.html",
+    "items": [
+      "/projects/ai/transportation-ts.html",
+      "/projects/ai/shopee.html",
+      "/projects/ai/spotify.html",
+      "/projects/ai/titanic.html",
+      "/projects/ai/customers-clustering.html",
+      "/projects/ai/ckd.html",
+      "/projects/ai/mobiles.html",
+      "/projects/ai/house-price.html"
+    ]
+  },
+  {
+    "listing": "/projects/auto/index.html",
+    "items": [
+      "/projects/auto/healthy-spiders.html"
+    ]
+  },
+  {
+    "listing": "/projects/da/index.html",
+    "items": [
+      "/projects/da/competitor-sales.html",
+      "/projects/da/healthstat.html",
+      "/projects/da/online-pet-supply-store.html",
+      "/projects/da/online-transportation.html",
+      "/projects/da/superstore.html",
+      "/projects/da/subscription.html",
+      "/projects/da/customer-churn.html"
+    ]
+  }
+]

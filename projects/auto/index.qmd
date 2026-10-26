@@ -1,0 +1,17 @@
+---
+title: "Automation Projects"
+listing:
+    type: grid
+    grid-columns: 3
+    categories: true
+    sort: "date desc"
+    image-placeholder: ../../images/profile_picture.png
+    contents: 
+        - "*.qmd"
+        - "*.ipynb" 
+---
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item active">Automation Projects</li>
+</ol>

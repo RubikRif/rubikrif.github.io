@@ -1,0 +1,65 @@
+---
+title: "Analyzing Healthcare Data"
+description: ' '
+date: 2026-10-02
+categories: [Data Analysis, Data Visualization, PowerBI]
+image: images/healthstat.jpg
+---
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item"><a href="../da/index.qmd">Data Analytics Projects</a></li>
+  <li class="breadcrumb-item active">Analyzing Healthcare Data</li>
+</ol>
+
+## Overview
+
+In this project, a fictitious consulting company called HealthStat wants to uncover insights on potential hospital efficiency opportunities. 
+
+First, there are some terms that we need to know:
+
+- **Discharge** is defined as the release of a patient from hospital care by a medical worker. 
+
+- **Disposition** is the patient destination or status upon discharge, for instance to another facility or to home. 
+
+- **Elective surgery** is a procedure that was planned in advance, in other words, it was not due to an emergency.
+
+Then, when measuring a hospital efficiency, it is important to know one important indicator, namely Length of Stay.
+
+**Length of Stay (LOS)** is calculated as the total duration in days for a patient stay in hospital. A shorter LOS is often desirable in hospital operations. Primarily, **shorter LOS means costs can be lowered**, release capacity in the system, and improve throughput, enabling hospitals to serve more patients. Many factors can impact LOS.
+
+In this project, the **focus** is **on patients who received hip replacement surgery**. Patients with hip pain, typically arthritis, may require elective hip replacement surgery. In this procedure, damaged bone and cartilage is surgically removed and replaced with prosthetic components. Hospital stay can range from 0 to 2 or more days.
+
+This project presents an interactive dashboard that enables stakeholders to: Progress through key insights in a logical flow, View informative, concise visuals Get data they need to make business decisions for improving efficiency.
+
+### Dataset
+
+For this project, we will be working with a dataset that includes New York state-wide hospital discharge data for a year (2016). Elective hip replacement surgery was the main reason for their hospital stay. The dataset is one single table with 30 columns Each row in the dataset represents a single inpatient stay, from their admission to discharge date. The health information in this dataset is not individually identifiable. This means the file does not contain personal health information.
+
+[<i class="bi bi-download"></i> Download Dataset (.csv)](data/hospital.csv){.btn .btn-secondary role="button" download="" target="_blank}
+
+[See Metadata](https://docs.google.com/spreadsheets/d/12obAfLNTPSGtM9gGsiTSWn2eRN5EnQH17WlG7qXCXtI/edit?usp=sharing){.btn .btn-outline-success role="button" target="_blank}
+
+### Tools & Technologies
+
+- Microsoft PowerBI
+
+- Power Query
+
+- DAX 
+
+- Data Modeling
+
+## Data Preparation
+
+**Data Transformation using Power Query**
+
+![](images/healthstat-model.png)
+
+## Dashboard
+
+![HealthStat Dashboard Demo](images/test-healthstat.gif)
+
+[<i class="bi bi-download"></i> Download Dashboard (.pbix)](dashboard/healthstat.pbix){.btn .btn-warning role="button" download="" target="_blank}
+
+## Key Findings

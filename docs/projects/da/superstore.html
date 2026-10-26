@@ -1,0 +1,3107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-08-31">
+
+<title>Superstore – Rifki Prakasya</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo.jpg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d1bfd0e684c6c5b9787ae398316dc838.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Rifki Prakasya</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages">Install Packages</a></li>
+  <li><a href="#connect-to-the-database" id="toc-connect-to-the-database" class="nav-link" data-scroll-target="#connect-to-the-database">Connect to The Database</a></li>
+  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data">Prepare the Data</a></li>
+  <li><a href="#create-the-table-schema" id="toc-create-the-table-schema" class="nav-link" data-scroll-target="#create-the-table-schema">Create the Table Schema</a></li>
+  <li><a href="#insert-the-data-into-the-table" id="toc-insert-the-data-into-the-table" class="nav-link" data-scroll-target="#insert-the-data-into-the-table">Insert The Data Into The Table</a></li>
+  <li><a href="#business-questions" id="toc-business-questions" class="nav-link" data-scroll-target="#business-questions">Business Questions</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Superstore</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Data Analysis</div>
+    <div class="quarto-category">SQL</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<ol class="breadcrumb">
+<li class="breadcrumb-item">
+<a href="../../home.html">Home</a>
+</li>
+<li class="breadcrumb-item">
+<a href="../../projects/da/index.html">Data Analytics Projects</a>
+</li>
+<li class="breadcrumb-item active">
+Superstore
+</li>
+</ol>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This project explores the superstore datasets using SQL to answer key analytical questions and uncover meaningful patterns in the data.</p>
+<p><a href="data/superstore.zip" class="btn btn-secondary" role="button" download="" target="&quot;_blank"><i class="bi bi-download"></i> Download Datasets (.zip)</a></p>
+<p>Queries are executed directly from a Jupyter Notebook using PostgreSQL, JupySQL, and SQLAlchemy.</p>
+<p><strong>Tools &amp; Technologies</strong></p>
+<ul>
+<li><p>PostgreSQL</p></li>
+<li><p>SQL</p></li>
+<li><p>Jupyter Notebook</p></li>
+<li><p>JupySQL</p></li>
+<li><p>SQLAlchemy</p></li>
+</ul>
+<p><strong>Analysis Workflow</strong></p>
+<ol type="1">
+<li><p>Preprocess the dataset and understand its structure.</p></li>
+<li><p>Create the table schema and insert the data into the table.</p></li>
+<li><p>Formulate analytical questions.</p></li>
+<li><p>Query and manipulate data using SQL.</p></li>
+<li><p>Interpret query results and summarize key findings.</p></li>
+</ol>
+</section>
+<section id="install-packages" class="level2">
+<h2 class="anchored" data-anchor-id="install-packages">Install Packages</h2>
+<div id="e0e7df67" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">--</span>upgrade <span class="op">-</span>q jupysql psycopg2<span class="op">-</span>binary python<span class="op">-</span>dotenv sqlalchemy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="aeb9db53" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config SqlMagic.autopandas <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config SqlMagic.displaylimit <span class="op">=</span> <span class="dv">50</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="connect-to-the-database" class="level2">
+<h2 class="anchored" data-anchor-id="connect-to-the-database">Connect to The Database</h2>
+<div id="5d2446ee" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv, find_dotenv</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>load_dotenv(find_dotenv())</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get credentials from .env</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>db_user <span class="op">=</span> os.getenv(<span class="st">"DB_USER"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>db_password <span class="op">=</span> os.getenv(<span class="st">"DB_PASSWORD"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>db_host <span class="op">=</span> os.getenv(<span class="st">"DB_HOST"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>db_port <span class="op">=</span> os.getenv(<span class="st">"DB_PORT"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>db_name <span class="op">=</span> os.getenv(<span class="st">"DB_NAME"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>connection_string <span class="op">=</span> <span class="ss">f"postgresql://</span><span class="sc">{</span>db_user<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>db_password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>db_host<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>db_port<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>db_name<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">'DATABASE_URL'</span>] <span class="op">=</span> connection_string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="3a9dcab9" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext sql</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="0cd164e3" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="prepare-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-the-data">Prepare the Data</h2>
+<div id="7fa16be9" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>customers_df <span class="op">=</span> pd.read_csv(<span class="st">'data/customers.csv'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>products_df <span class="op">=</span> pd.read_csv(<span class="st">'data/products.csv'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>orders_df <span class="op">=</span> pd.read_csv(<span class="st">'data/orders.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="863e4edc" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>customers_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">customer_id</th>
+<th data-quarto-table-cell-role="th">customer_name</th>
+<th data-quarto-table-cell-role="th">segment</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">city</th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">postal_code</th>
+<th data-quarto-table-cell-role="th">region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>CG-12520</td>
+<td>Claire Gute</td>
+<td>Consumer</td>
+<td>United States</td>
+<td>Henderson</td>
+<td>Kentucky</td>
+<td>42420</td>
+<td>South</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>DV-13045</td>
+<td>Darrin Van Huff</td>
+<td>Corporate</td>
+<td>United States</td>
+<td>Los Angeles</td>
+<td>California</td>
+<td>90036</td>
+<td>West</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>SO-20335</td>
+<td>Sean O'Donnell</td>
+<td>Consumer</td>
+<td>United States</td>
+<td>Fort Lauderdale</td>
+<td>Florida</td>
+<td>33311</td>
+<td>South</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>BH-11710</td>
+<td>Brosina Hoffman</td>
+<td>Consumer</td>
+<td>United States</td>
+<td>Los Angeles</td>
+<td>California</td>
+<td>90032</td>
+<td>West</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>AA-10480</td>
+<td>Andrew Allen</td>
+<td>Consumer</td>
+<td>United States</td>
+<td>Concord</td>
+<td>North Carolina</td>
+<td>28027</td>
+<td>South</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">788</th>
+<td>CJ-11875</td>
+<td>Carl Jackson</td>
+<td>Corporate</td>
+<td>United States</td>
+<td>Philadelphia</td>
+<td>Pennsylvania</td>
+<td>19140</td>
+<td>East</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">789</th>
+<td>RS-19870</td>
+<td>Roy Skaria</td>
+<td>Home Office</td>
+<td>United States</td>
+<td>Burlington</td>
+<td>Iowa</td>
+<td>52601</td>
+<td>Central</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">790</th>
+<td>SC-20845</td>
+<td>Sung Chung</td>
+<td>Consumer</td>
+<td>United States</td>
+<td>Arlington Heights</td>
+<td>Illinois</td>
+<td>60004</td>
+<td>Central</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">791</th>
+<td>RE-19405</td>
+<td>Ricardo Emerson</td>
+<td>Consumer</td>
+<td>United States</td>
+<td>Kent</td>
+<td>Ohio</td>
+<td>44240</td>
+<td>East</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">792</th>
+<td>SM-20905</td>
+<td>Susan MacKendrick</td>
+<td>Consumer</td>
+<td>United States</td>
+<td>Newark</td>
+<td>Ohio</td>
+<td>43055</td>
+<td>East</td>
+</tr>
+</tbody>
+</table>
+
+<p>793 rows × 8 columns</p>
+</div>
+</div>
+</div>
+<div id="20fd8c9f" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>products_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">product_id</th>
+<th data-quarto-table-cell-role="th">category</th>
+<th data-quarto-table-cell-role="th">sub_category</th>
+<th data-quarto-table-cell-role="th">product_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>FUR-BO-10001798</td>
+<td>Furniture</td>
+<td>Bookcases</td>
+<td>Bush Somerset Collection Bookcase</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>FUR-CH-10000454</td>
+<td>Furniture</td>
+<td>Chairs</td>
+<td>Hon Deluxe Fabric Upholstered Stacking Chairs,...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>OFF-LA-10000240</td>
+<td>Office Supplies</td>
+<td>Labels</td>
+<td>Self-Adhesive Address Labels for Typewriters b...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>FUR-TA-10000577</td>
+<td>Furniture</td>
+<td>Tables</td>
+<td>Bretford CR4500 Series Slim Rectangular Table</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>OFF-ST-10000760</td>
+<td>Office Supplies</td>
+<td>Storage</td>
+<td>Eldon Fold 'N Roll Cart System</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1857</th>
+<td>TEC-PH-10002817</td>
+<td>Technology</td>
+<td>Phones</td>
+<td>RCA ViSYS 25425RE1 Corded phone</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1858</th>
+<td>TEC-MA-10003589</td>
+<td>Technology</td>
+<td>Machines</td>
+<td>Cisco 8961 IP Phone Charcoal</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1859</th>
+<td>OFF-AP-10003099</td>
+<td>Office Supplies</td>
+<td>Appliances</td>
+<td>Eureka Hand Vacuum, Bagless</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1860</th>
+<td>TEC-PH-10002645</td>
+<td>Technology</td>
+<td>Phones</td>
+<td>LG G2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1861</th>
+<td>OFF-ST-10001627</td>
+<td>Office Supplies</td>
+<td>Storage</td>
+<td>Eldon Jumbo ProFile Portable File Boxes Graphi...</td>
+</tr>
+</tbody>
+</table>
+
+<p>1862 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<div id="bc493096" class="cell" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>orders_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">row_id</th>
+<th data-quarto-table-cell-role="th">order_id</th>
+<th data-quarto-table-cell-role="th">order_date</th>
+<th data-quarto-table-cell-role="th">ship_date</th>
+<th data-quarto-table-cell-role="th">ship_mode</th>
+<th data-quarto-table-cell-role="th">customer_id</th>
+<th data-quarto-table-cell-role="th">product_id</th>
+<th data-quarto-table-cell-role="th">sales</th>
+<th data-quarto-table-cell-role="th">quantity</th>
+<th data-quarto-table-cell-role="th">discount</th>
+<th data-quarto-table-cell-role="th">profit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>CA-2016-152156</td>
+<td>2016-11-08</td>
+<td>2016-11-11</td>
+<td>Second Class</td>
+<td>CG-12520</td>
+<td>FUR-BO-10001798</td>
+<td>261.9600</td>
+<td>2</td>
+<td>0.00</td>
+<td>41.9136</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>CA-2016-152156</td>
+<td>2016-11-08</td>
+<td>2016-11-11</td>
+<td>Second Class</td>
+<td>CG-12520</td>
+<td>FUR-CH-10000454</td>
+<td>731.9400</td>
+<td>3</td>
+<td>0.00</td>
+<td>219.5820</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>CA-2016-138688</td>
+<td>2016-06-12</td>
+<td>2016-06-16</td>
+<td>Second Class</td>
+<td>DV-13045</td>
+<td>OFF-LA-10000240</td>
+<td>14.6200</td>
+<td>2</td>
+<td>0.00</td>
+<td>6.8714</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>US-2015-108966</td>
+<td>2015-10-11</td>
+<td>2015-10-18</td>
+<td>Standard Class</td>
+<td>SO-20335</td>
+<td>FUR-TA-10000577</td>
+<td>957.5775</td>
+<td>5</td>
+<td>0.45</td>
+<td>-383.0310</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>US-2015-108966</td>
+<td>2015-10-11</td>
+<td>2015-10-18</td>
+<td>Standard Class</td>
+<td>SO-20335</td>
+<td>OFF-ST-10000760</td>
+<td>22.3680</td>
+<td>2</td>
+<td>0.20</td>
+<td>2.5164</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">9989</th>
+<td>9990</td>
+<td>CA-2014-110422</td>
+<td>2014-01-21</td>
+<td>2014-01-23</td>
+<td>Second Class</td>
+<td>TB-21400</td>
+<td>FUR-FU-10001889</td>
+<td>25.2480</td>
+<td>3</td>
+<td>0.20</td>
+<td>4.1028</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9990</th>
+<td>9991</td>
+<td>CA-2017-121258</td>
+<td>2017-02-26</td>
+<td>2017-03-03</td>
+<td>Standard Class</td>
+<td>DB-13060</td>
+<td>FUR-FU-10000747</td>
+<td>91.9600</td>
+<td>2</td>
+<td>0.00</td>
+<td>15.6332</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">9991</th>
+<td>9992</td>
+<td>CA-2017-121258</td>
+<td>2017-02-26</td>
+<td>2017-03-03</td>
+<td>Standard Class</td>
+<td>DB-13060</td>
+<td>TEC-PH-10003645</td>
+<td>258.5760</td>
+<td>2</td>
+<td>0.20</td>
+<td>19.3932</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9992</th>
+<td>9993</td>
+<td>CA-2017-121258</td>
+<td>2017-02-26</td>
+<td>2017-03-03</td>
+<td>Standard Class</td>
+<td>DB-13060</td>
+<td>OFF-PA-10004041</td>
+<td>29.6000</td>
+<td>4</td>
+<td>0.00</td>
+<td>13.3200</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">9993</th>
+<td>9994</td>
+<td>CA-2017-119914</td>
+<td>2017-05-04</td>
+<td>2017-05-09</td>
+<td>Second Class</td>
+<td>CC-12220</td>
+<td>OFF-AP-10002684</td>
+<td>243.1600</td>
+<td>2</td>
+<td>0.00</td>
+<td>72.9480</td>
+</tr>
+</tbody>
+</table>
+
+<p>9994 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<div id="dee74c6f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>customers_df[<span class="st">'country'</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>country
+United States    793
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<div id="eddd7902" class="cell" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>orders_df[<span class="st">'ship_mode'</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>ship_mode
+Standard Class    5968
+Second Class      1945
+First Class       1538
+Same Day           543
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<div id="d4b3d88f" class="cell" data-execution_count="40">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>customers_df <span class="op">=</span> customers_df.drop(columns<span class="op">=</span>[<span class="st">'country'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="19674d04" class="cell" data-execution_count="41">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>customers_df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 793 entries, 0 to 792
+Data columns (total 7 columns):
+ #   Column         Non-Null Count  Dtype
+---  ------         --------------  -----
+ 0   customer_id    793 non-null    str  
+ 1   customer_name  793 non-null    str  
+ 2   segment        793 non-null    str  
+ 3   city           793 non-null    str  
+ 4   state          793 non-null    str  
+ 5   postal_code    793 non-null    int64
+ 6   region         793 non-null    str  
+dtypes: int64(1), str(6)
+memory usage: 43.5 KB</code></pre>
+</div>
+</div>
+<div id="89158278" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>products_df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 1862 entries, 0 to 1861
+Data columns (total 4 columns):
+ #   Column        Non-Null Count  Dtype
+---  ------        --------------  -----
+ 0   product_id    1862 non-null   str  
+ 1   category      1862 non-null   str  
+ 2   sub_category  1862 non-null   str  
+ 3   product_name  1862 non-null   str  
+dtypes: str(4)
+memory usage: 58.3 KB</code></pre>
+</div>
+</div>
+<div id="ba7dc6ee" class="cell" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>orders_df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 9994 entries, 0 to 9993
+Data columns (total 11 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   row_id       9994 non-null   int64  
+ 1   order_id     9994 non-null   str    
+ 2   order_date   9994 non-null   str    
+ 3   ship_date    9994 non-null   str    
+ 4   ship_mode    9994 non-null   str    
+ 5   customer_id  9994 non-null   str    
+ 6   product_id   9994 non-null   str    
+ 7   sales        9994 non-null   float64
+ 8   quantity     9994 non-null   int64  
+ 9   discount     9994 non-null   float64
+ 10  profit       9994 non-null   float64
+dtypes: float64(3), int64(2), str(6)
+memory usage: 859.0 KB</code></pre>
+</div>
+</div>
+</section>
+<section id="create-the-table-schema" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-table-schema">Create the Table Schema</h2>
+<div id="4f2cd128" class="cell" data-execution_count="48">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> customers table</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS customers (</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    customer_id VARCHAR(<span class="dv">15</span>) PRIMARY KEY,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    customer_name VARCHAR(<span class="dv">100</span>) NOT NULL,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    segment VARCHAR(<span class="dv">25</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    city VARCHAR(<span class="dv">50</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    state VARCHAR(<span class="dv">50</span>),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    postal_code VARCHAR(<span class="dv">10</span>),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    region VARCHAR(<span class="dv">15</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> products table</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS products (</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    product_id VARCHAR(<span class="dv">25</span>) PRIMARY KEY,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    category VARCHAR(<span class="dv">50</span>),</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    sub_category VARCHAR(<span class="dv">50</span>),</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    product_name TEXT</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> orders table</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS orders (</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    row_id INT PRIMARY KEY,</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    order_id VARCHAR(<span class="dv">25</span>) NOT NULL,</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    order_date DATE NOT NULL,</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    ship_date DATE,</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    ship_mode VARCHAR(<span class="dv">25</span>),</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    customer_id VARCHAR(<span class="dv">15</span>) REFERENCES customers(customer_id),</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    product_id VARCHAR(<span class="dv">25</span>) REFERENCES products(product_id),</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    sales NUMERIC(<span class="dv">10</span>, <span class="dv">4</span>),</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    quantity INT,</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    discount NUMERIC(<span class="dv">4</span>, <span class="dv">2</span>),</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    profit NUMERIC(<span class="dv">10</span>, <span class="dv">4</span>)</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="insert-the-data-into-the-table" class="level2">
+<h2 class="anchored" data-anchor-id="insert-the-data-into-the-table">Insert The Data Into The Table</h2>
+<div id="56cfbd2a" class="cell" data-execution_count="49">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insert_new_data(df, table_name, engine, key_cols):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Insert only new data from DataFrame to the table in the SQL database.</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">    :param df: pandas DataFrame.</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">    :param table_name: a string of table name destination in the SQL database.</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">    :param engine: SQLAlchemy engine connection object.</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">    :param key_cols: string or list of primary key/composite keys</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df.empty:</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"DataFrame is empty."</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make the key_cols is always a list</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(key_cols, <span class="bu">str</span>):</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        keys <span class="op">=</span> [key_cols]</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>        keys <span class="op">=</span> key_cols</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    cols_str <span class="op">=</span> <span class="st">", "</span>.join(keys)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> <span class="ss">f"SELECT </span><span class="sc">{</span>cols_str<span class="sc">}</span><span class="ss"> FROM </span><span class="sc">{</span>table_name<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    existing_df <span class="op">=</span> pd.read_sql(query, con<span class="op">=</span>engine)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(keys) <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># only 1 primary key</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>        key_col <span class="op">=</span> keys[<span class="dv">0</span>]</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>        existing_keys <span class="op">=</span> existing_df[key_col].tolist()</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>        new_df <span class="op">=</span> df[<span class="op">~</span>df[key_col].isin(existing_keys)].copy()</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># composite key</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>        merged <span class="op">=</span> df.merge(existing_df[keys].drop_duplicates(), on<span class="op">=</span>keys, how<span class="op">=</span><span class="st">"left"</span>, indicator<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>        new_df <span class="op">=</span> merged[merged[<span class="st">"_merge"</span>] <span class="op">==</span> <span class="st">"left_only"</span>].drop(columns<span class="op">=</span>[<span class="st">"_merge"</span>]).copy()</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> new_df.empty:</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>        new_df.to_sql(table_name, con<span class="op">=</span>engine, if_exists<span class="op">=</span><span class="st">"append"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Successfully inserted </span><span class="sc">{</span><span class="bu">len</span>(new_df)<span class="sc">}</span><span class="ss"> new rows of data into the table '</span><span class="sc">{</span>table_name<span class="sc">}</span><span class="ss">'."</span>)</span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"All datas have been saved to the table '</span><span class="sc">{</span>table_name<span class="sc">}</span><span class="ss">'."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="d910e7f6" class="cell" data-execution_count="51">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(connection_string)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># insert customers data</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>insert_new_data(df<span class="op">=</span>customers_df, table_name<span class="op">=</span><span class="st">'customers'</span>, engine<span class="op">=</span>engine, key_cols<span class="op">=</span><span class="st">'customer_id'</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># insert products data</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>insert_new_data(df<span class="op">=</span>products_df, table_name<span class="op">=</span><span class="st">'products'</span>, engine<span class="op">=</span>engine, key_cols<span class="op">=</span><span class="st">'product_id'</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># insert orders data</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>insert_new_data(df<span class="op">=</span>orders_df, table_name<span class="op">=</span><span class="st">'orders'</span>, engine<span class="op">=</span>engine, key_cols<span class="op">=</span><span class="st">'row_id'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>All datas have been saved to the table 'customers'.
+Successfully inserted 1862 new rows of data into the table 'products'.
+Successfully inserted 9994 new rows of data into the table 'orders'.</code></pre>
+</div>
+</div>
+<div id="cb0ac96e" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>FROM customers</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>LIMIT <span class="dv">5</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">5 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">customer_id</th>
+<th data-quarto-table-cell-role="th">customer_name</th>
+<th data-quarto-table-cell-role="th">segment</th>
+<th data-quarto-table-cell-role="th">city</th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">postal_code</th>
+<th data-quarto-table-cell-role="th">region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>CG-12520</td>
+<td>Claire Gute</td>
+<td>Consumer</td>
+<td>Henderson</td>
+<td>Kentucky</td>
+<td>42420</td>
+<td>South</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>DV-13045</td>
+<td>Darrin Van Huff</td>
+<td>Corporate</td>
+<td>Los Angeles</td>
+<td>California</td>
+<td>90036</td>
+<td>West</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>SO-20335</td>
+<td>Sean O'Donnell</td>
+<td>Consumer</td>
+<td>Fort Lauderdale</td>
+<td>Florida</td>
+<td>33311</td>
+<td>South</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>BH-11710</td>
+<td>Brosina Hoffman</td>
+<td>Consumer</td>
+<td>Los Angeles</td>
+<td>California</td>
+<td>90032</td>
+<td>West</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>AA-10480</td>
+<td>Andrew Allen</td>
+<td>Consumer</td>
+<td>Concord</td>
+<td>North Carolina</td>
+<td>28027</td>
+<td>South</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="86efad87" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>FROM products</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>LIMIT <span class="dv">5</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">5 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">product_id</th>
+<th data-quarto-table-cell-role="th">category</th>
+<th data-quarto-table-cell-role="th">sub_category</th>
+<th data-quarto-table-cell-role="th">product_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>FUR-BO-10001798</td>
+<td>Furniture</td>
+<td>Bookcases</td>
+<td>Bush Somerset Collection Bookcase</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>FUR-CH-10000454</td>
+<td>Furniture</td>
+<td>Chairs</td>
+<td>Hon Deluxe Fabric Upholstered Stacking Chairs,...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>OFF-LA-10000240</td>
+<td>Office Supplies</td>
+<td>Labels</td>
+<td>Self-Adhesive Address Labels for Typewriters b...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>FUR-TA-10000577</td>
+<td>Furniture</td>
+<td>Tables</td>
+<td>Bretford CR4500 Series Slim Rectangular Table</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>OFF-ST-10000760</td>
+<td>Office Supplies</td>
+<td>Storage</td>
+<td>Eldon Fold 'N Roll Cart System</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="d17c54c2" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>FROM orders</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>LIMIT <span class="dv">5</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">5 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">row_id</th>
+<th data-quarto-table-cell-role="th">order_id</th>
+<th data-quarto-table-cell-role="th">order_date</th>
+<th data-quarto-table-cell-role="th">ship_date</th>
+<th data-quarto-table-cell-role="th">ship_mode</th>
+<th data-quarto-table-cell-role="th">customer_id</th>
+<th data-quarto-table-cell-role="th">product_id</th>
+<th data-quarto-table-cell-role="th">sales</th>
+<th data-quarto-table-cell-role="th">quantity</th>
+<th data-quarto-table-cell-role="th">discount</th>
+<th data-quarto-table-cell-role="th">profit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>CA-2016-152156</td>
+<td>2016-11-08</td>
+<td>2016-11-11</td>
+<td>Second Class</td>
+<td>CG-12520</td>
+<td>FUR-BO-10001798</td>
+<td>261.9600</td>
+<td>2</td>
+<td>0.00</td>
+<td>41.9136</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>CA-2016-152156</td>
+<td>2016-11-08</td>
+<td>2016-11-11</td>
+<td>Second Class</td>
+<td>CG-12520</td>
+<td>FUR-CH-10000454</td>
+<td>731.9400</td>
+<td>3</td>
+<td>0.00</td>
+<td>219.5820</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>CA-2016-138688</td>
+<td>2016-06-12</td>
+<td>2016-06-16</td>
+<td>Second Class</td>
+<td>DV-13045</td>
+<td>OFF-LA-10000240</td>
+<td>14.6200</td>
+<td>2</td>
+<td>0.00</td>
+<td>6.8714</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>US-2015-108966</td>
+<td>2015-10-11</td>
+<td>2015-10-18</td>
+<td>Standard Class</td>
+<td>SO-20335</td>
+<td>FUR-TA-10000577</td>
+<td>957.5775</td>
+<td>5</td>
+<td>0.45</td>
+<td>-383.0310</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>US-2015-108966</td>
+<td>2015-10-11</td>
+<td>2015-10-18</td>
+<td>Standard Class</td>
+<td>SO-20335</td>
+<td>OFF-ST-10000760</td>
+<td>22.3680</td>
+<td>2</td>
+<td>0.20</td>
+<td>2.5164</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="business-questions" class="level2">
+<h2 class="anchored" data-anchor-id="business-questions">Business Questions</h2>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>How have sales and profitability evolved over time?</p>
+<div id="86c496ea" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>WITH monthly_sales_profit AS (</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    SELECT </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        DATE_TRUNC(<span class="st">'month'</span>, order_date)::date AS month,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        SUM(sales) AS total_sales,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        SUM(profit) AS total_profit</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    FROM orders</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    GROUP BY DATE_TRUNC(<span class="st">'month'</span>, order_date)::date</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>sales_profit_trends AS (</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    SELECT</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        month,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        total_sales,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>        total_profit,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        LAG(total_sales) OVER (ORDER BY month) AS previous_month_sales,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        LAG(total_profit) OVER (ORDER BY month) AS previous_month_profit</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    FROM monthly_sales_profit</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    month,</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    total_sales,</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    total_profit,</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    previous_month_sales,</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    previous_month_profit,</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>        <span class="fl">100.0</span> <span class="op">*</span> (total_sales <span class="op">-</span> previous_month_sales) <span class="op">/</span> NULLIF(previous_month_sales, <span class="dv">0</span>),</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>    ) AS growth_sales_pct,</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>        <span class="fl">100.0</span> <span class="op">*</span> (total_profit <span class="op">-</span> previous_month_profit) <span class="op">/</span> NULLIF(previous_month_profit, <span class="dv">0</span>),</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    ) AS growth_profit_pct</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>FROM sales_profit_trends</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>ORDER BY month</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">48 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">total_sales</th>
+<th data-quarto-table-cell-role="th">total_profit</th>
+<th data-quarto-table-cell-role="th">previous_month_sales</th>
+<th data-quarto-table-cell-role="th">previous_month_profit</th>
+<th data-quarto-table-cell-role="th">growth_sales_pct</th>
+<th data-quarto-table-cell-role="th">growth_profit_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2014-01-01</td>
+<td>14236.8950</td>
+<td>2450.1907</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2014-02-01</td>
+<td>4519.8920</td>
+<td>862.3084</td>
+<td>14236.8950</td>
+<td>2450.1907</td>
+<td>-68.25</td>
+<td>-64.81</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2014-03-01</td>
+<td>55691.0090</td>
+<td>498.7299</td>
+<td>4519.8920</td>
+<td>862.3084</td>
+<td>1132.13</td>
+<td>-42.16</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2014-04-01</td>
+<td>28295.3450</td>
+<td>3488.8352</td>
+<td>55691.0090</td>
+<td>498.7299</td>
+<td>-49.19</td>
+<td>599.54</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>2014-05-01</td>
+<td>23648.2870</td>
+<td>2738.7096</td>
+<td>28295.3450</td>
+<td>3488.8352</td>
+<td>-16.42</td>
+<td>-21.50</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>2014-06-01</td>
+<td>34595.1276</td>
+<td>4976.5244</td>
+<td>23648.2870</td>
+<td>2738.7096</td>
+<td>46.29</td>
+<td>81.71</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>2014-07-01</td>
+<td>33946.3930</td>
+<td>-841.4826</td>
+<td>34595.1276</td>
+<td>4976.5244</td>
+<td>-1.88</td>
+<td>-116.91</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>2014-08-01</td>
+<td>27909.4685</td>
+<td>5318.1050</td>
+<td>33946.3930</td>
+<td>-841.4826</td>
+<td>-17.78</td>
+<td>-731.99</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>2014-09-01</td>
+<td>81777.3508</td>
+<td>8328.0994</td>
+<td>27909.4685</td>
+<td>5318.1050</td>
+<td>193.01</td>
+<td>56.60</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>2014-10-01</td>
+<td>31453.3930</td>
+<td>3448.2573</td>
+<td>81777.3508</td>
+<td>8328.0994</td>
+<td>-61.54</td>
+<td>-58.59</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>2014-11-01</td>
+<td>78628.7167</td>
+<td>9292.1269</td>
+<td>31453.3930</td>
+<td>3448.2573</td>
+<td>149.98</td>
+<td>169.47</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>2014-12-01</td>
+<td>69545.6205</td>
+<td>8983.5699</td>
+<td>78628.7167</td>
+<td>9292.1269</td>
+<td>-11.55</td>
+<td>-3.32</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>2015-01-01</td>
+<td>18174.0756</td>
+<td>-3281.0070</td>
+<td>69545.6205</td>
+<td>8983.5699</td>
+<td>-73.87</td>
+<td>-136.52</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>2015-02-01</td>
+<td>11951.4110</td>
+<td>2813.8508</td>
+<td>18174.0756</td>
+<td>-3281.0070</td>
+<td>-34.24</td>
+<td>-185.76</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>2015-03-01</td>
+<td>38726.2520</td>
+<td>9732.0978</td>
+<td>11951.4110</td>
+<td>2813.8508</td>
+<td>224.03</td>
+<td>245.86</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15</th>
+<td>2015-04-01</td>
+<td>34195.2085</td>
+<td>4187.4962</td>
+<td>38726.2520</td>
+<td>9732.0978</td>
+<td>-11.70</td>
+<td>-56.97</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16</th>
+<td>2015-05-01</td>
+<td>30131.6865</td>
+<td>4667.8690</td>
+<td>34195.2085</td>
+<td>4187.4962</td>
+<td>-11.88</td>
+<td>11.47</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">17</th>
+<td>2015-06-01</td>
+<td>24797.2920</td>
+<td>3335.5572</td>
+<td>30131.6865</td>
+<td>4667.8690</td>
+<td>-17.70</td>
+<td>-28.54</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">18</th>
+<td>2015-07-01</td>
+<td>28765.3250</td>
+<td>3288.6483</td>
+<td>24797.2920</td>
+<td>3335.5572</td>
+<td>16.00</td>
+<td>-1.41</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">19</th>
+<td>2015-08-01</td>
+<td>36898.3322</td>
+<td>5355.8084</td>
+<td>28765.3250</td>
+<td>3288.6483</td>
+<td>28.27</td>
+<td>62.86</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">20</th>
+<td>2015-09-01</td>
+<td>64595.9180</td>
+<td>8209.1627</td>
+<td>36898.3322</td>
+<td>5355.8084</td>
+<td>75.06</td>
+<td>53.28</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21</th>
+<td>2015-10-01</td>
+<td>31404.9235</td>
+<td>2817.3660</td>
+<td>64595.9180</td>
+<td>8209.1627</td>
+<td>-51.38</td>
+<td>-65.68</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">22</th>
+<td>2015-11-01</td>
+<td>75972.5635</td>
+<td>12474.7884</td>
+<td>31404.9235</td>
+<td>2817.3660</td>
+<td>141.91</td>
+<td>342.78</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">23</th>
+<td>2015-12-01</td>
+<td>74919.5212</td>
+<td>8016.9659</td>
+<td>75972.5635</td>
+<td>12474.7884</td>
+<td>-1.39</td>
+<td>-35.73</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">24</th>
+<td>2016-01-01</td>
+<td>18542.4910</td>
+<td>2824.8233</td>
+<td>74919.5212</td>
+<td>8016.9659</td>
+<td>-75.25</td>
+<td>-64.76</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">25</th>
+<td>2016-02-01</td>
+<td>22978.8150</td>
+<td>5004.5795</td>
+<td>18542.4910</td>
+<td>2824.8233</td>
+<td>23.93</td>
+<td>77.16</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">26</th>
+<td>2016-03-01</td>
+<td>51715.8750</td>
+<td>3611.9680</td>
+<td>22978.8150</td>
+<td>5004.5795</td>
+<td>125.06</td>
+<td>-27.83</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">27</th>
+<td>2016-04-01</td>
+<td>38750.0390</td>
+<td>2977.8149</td>
+<td>51715.8750</td>
+<td>3611.9680</td>
+<td>-25.07</td>
+<td>-17.56</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">28</th>
+<td>2016-05-01</td>
+<td>56987.7280</td>
+<td>8662.1464</td>
+<td>38750.0390</td>
+<td>2977.8149</td>
+<td>47.06</td>
+<td>190.89</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">29</th>
+<td>2016-06-01</td>
+<td>40344.5340</td>
+<td>4750.3781</td>
+<td>56987.7280</td>
+<td>8662.1464</td>
+<td>-29.20</td>
+<td>-45.16</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">30</th>
+<td>2016-07-01</td>
+<td>39261.9630</td>
+<td>4432.8779</td>
+<td>40344.5340</td>
+<td>4750.3781</td>
+<td>-2.68</td>
+<td>-6.68</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">31</th>
+<td>2016-08-01</td>
+<td>31115.3743</td>
+<td>2062.0693</td>
+<td>39261.9630</td>
+<td>4432.8779</td>
+<td>-20.75</td>
+<td>-53.48</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">32</th>
+<td>2016-09-01</td>
+<td>73410.0249</td>
+<td>9328.6576</td>
+<td>31115.3743</td>
+<td>2062.0693</td>
+<td>135.93</td>
+<td>352.39</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">33</th>
+<td>2016-10-01</td>
+<td>59687.7450</td>
+<td>16243.1425</td>
+<td>73410.0249</td>
+<td>9328.6576</td>
+<td>-18.69</td>
+<td>74.12</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">34</th>
+<td>2016-11-01</td>
+<td>79411.9658</td>
+<td>4011.4075</td>
+<td>59687.7450</td>
+<td>16243.1425</td>
+<td>33.05</td>
+<td>-75.30</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">35</th>
+<td>2016-12-01</td>
+<td>96999.0430</td>
+<td>17885.3093</td>
+<td>79411.9658</td>
+<td>4011.4075</td>
+<td>22.15</td>
+<td>345.86</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">36</th>
+<td>2017-01-01</td>
+<td>43971.3740</td>
+<td>7140.4391</td>
+<td>96999.0430</td>
+<td>17885.3093</td>
+<td>-54.67</td>
+<td>-60.08</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">37</th>
+<td>2017-02-01</td>
+<td>20301.1334</td>
+<td>1613.8720</td>
+<td>43971.3740</td>
+<td>7140.4391</td>
+<td>-53.83</td>
+<td>-77.40</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">38</th>
+<td>2017-03-01</td>
+<td>58872.3528</td>
+<td>14751.8915</td>
+<td>20301.1334</td>
+<td>1613.8720</td>
+<td>190.00</td>
+<td>814.07</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">39</th>
+<td>2017-04-01</td>
+<td>36521.5361</td>
+<td>933.2900</td>
+<td>58872.3528</td>
+<td>14751.8915</td>
+<td>-37.96</td>
+<td>-93.67</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">40</th>
+<td>2017-05-01</td>
+<td>44261.1102</td>
+<td>6342.5828</td>
+<td>36521.5361</td>
+<td>933.2900</td>
+<td>21.19</td>
+<td>579.59</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">41</th>
+<td>2017-06-01</td>
+<td>52981.7257</td>
+<td>8223.3357</td>
+<td>44261.1102</td>
+<td>6342.5828</td>
+<td>19.70</td>
+<td>29.65</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">42</th>
+<td>2017-07-01</td>
+<td>45264.4160</td>
+<td>6952.6212</td>
+<td>52981.7257</td>
+<td>8223.3357</td>
+<td>-14.57</td>
+<td>-15.45</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">43</th>
+<td>2017-08-01</td>
+<td>63120.8880</td>
+<td>9040.9557</td>
+<td>45264.4160</td>
+<td>6952.6212</td>
+<td>39.45</td>
+<td>30.04</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">44</th>
+<td>2017-09-01</td>
+<td>87866.6520</td>
+<td>10991.5556</td>
+<td>63120.8880</td>
+<td>9040.9557</td>
+<td>39.20</td>
+<td>21.58</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">45</th>
+<td>2017-10-01</td>
+<td>77776.9232</td>
+<td>9275.2755</td>
+<td>87866.6520</td>
+<td>10991.5556</td>
+<td>-11.48</td>
+<td>-15.61</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">46</th>
+<td>2017-11-01</td>
+<td>118447.8250</td>
+<td>9690.1037</td>
+<td>77776.9232</td>
+<td>9275.2755</td>
+<td>52.29</td>
+<td>4.47</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">47</th>
+<td>2017-12-01</td>
+<td>83829.3188</td>
+<td>8483.3468</td>
+<td>118447.8250</td>
+<td>9690.1037</td>
+<td>-29.23</td>
+<td>-12.45</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="a1d96594" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql sales_profit_trends <span class="op">&lt;&lt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>WITH monthly_sales_profit AS (</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    SELECT </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        DATE_TRUNC(<span class="st">'month'</span>, order_date)::date AS month,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        SUM(sales) AS total_sales,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        SUM(profit) AS total_profit</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    FROM orders</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    GROUP BY DATE_TRUNC(<span class="st">'month'</span>, order_date)::date</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>sales_profit_trends AS (</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    SELECT</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>        month,</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>        total_sales,</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>        total_profit,</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        LAG(total_sales) OVER (ORDER BY month) AS previous_month_sales,</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        LAG(total_profit) OVER (ORDER BY month) AS previous_month_profit</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    FROM monthly_sales_profit</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    month,</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    total_sales,</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    total_profit,</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    previous_month_sales,</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    previous_month_profit,</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>        <span class="fl">100.0</span> <span class="op">*</span> (total_sales <span class="op">-</span> previous_month_sales) <span class="op">/</span> NULLIF(previous_month_sales, <span class="dv">0</span>),</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>    ) AS growth_sales_pct,</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>        <span class="fl">100.0</span> <span class="op">*</span> (total_profit <span class="op">-</span> previous_month_profit) <span class="op">/</span> NULLIF(previous_month_profit, <span class="dv">0</span>),</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    ) AS growth_profit_pct</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>FROM sales_profit_trends</span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>ORDER BY month</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">48 rows affected.</span>
+</div>
+</div>
+<div id="d0057a5d" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>plt.plot(sales_profit_trends[<span class="st">'month'</span>], sales_profit_trends[<span class="st">'total_sales'</span>], color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.plot(sales_profit_trends[<span class="st">'month'</span>], sales_profit_trends[<span class="st">'total_profit'</span>], color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Monthly Sales and Profit Over Time'</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Amount'</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Total Sales'</span>, <span class="st">'Total Profit'</span>])</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="superstore_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Monthly sales fluctuate considerably throughout the observed period, from January 2014 to December 2017, with seasonal peak pattern toward the end of the period, reaching their highest level in late 2017 at approximately 118,000. Monthly profit generally follows a similar pattern, although its fluctuations are less pronounced in absolute terms. Several months show relatively low or negative profits despite positive sales, indicating that higher sales do not always translate into higher profitability.</p>
+</section>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>Which product categories and subcategories generate the highest sales and profit?</p>
+<div id="754eb5f1" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    p.category,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    p.sub_category,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    SUM(o.sales) AS total_sales,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    SUM(o.profit) AS total_profit,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        <span class="fl">100.0</span> <span class="op">*</span> SUM(o.profit) <span class="op">/</span> NULLIF(SUM(o.sales), <span class="dv">0</span>),</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    ) AS profit_margin_pct</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>FROM orders AS o</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>LEFT JOIN products AS p</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    ON o.product_id <span class="op">=</span> p.product_id</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>GROUP BY p.category, p.sub_category</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>ORDER BY total_sales DESC<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">17 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">category</th>
+<th data-quarto-table-cell-role="th">sub_category</th>
+<th data-quarto-table-cell-role="th">total_sales</th>
+<th data-quarto-table-cell-role="th">total_profit</th>
+<th data-quarto-table-cell-role="th">profit_margin_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Technology</td>
+<td>Phones</td>
+<td>330007.0540</td>
+<td>44515.7306</td>
+<td>13.49</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Furniture</td>
+<td>Chairs</td>
+<td>328449.1030</td>
+<td>26590.1663</td>
+<td>8.10</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Office Supplies</td>
+<td>Storage</td>
+<td>223843.6080</td>
+<td>21278.8264</td>
+<td>9.51</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Furniture</td>
+<td>Tables</td>
+<td>206965.5320</td>
+<td>-17725.4811</td>
+<td>-8.56</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Office Supplies</td>
+<td>Binders</td>
+<td>203412.7330</td>
+<td>30221.7633</td>
+<td>14.86</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Technology</td>
+<td>Machines</td>
+<td>189238.6310</td>
+<td>3384.7569</td>
+<td>1.79</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Technology</td>
+<td>Accessories</td>
+<td>167380.3180</td>
+<td>41936.6357</td>
+<td>25.05</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Technology</td>
+<td>Copiers</td>
+<td>149528.0300</td>
+<td>55617.8249</td>
+<td>37.20</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>Furniture</td>
+<td>Bookcases</td>
+<td>114879.9963</td>
+<td>-3472.5560</td>
+<td>-3.02</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Office Supplies</td>
+<td>Appliances</td>
+<td>107532.1610</td>
+<td>18138.0054</td>
+<td>16.87</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>Furniture</td>
+<td>Furnishings</td>
+<td>91705.1640</td>
+<td>13059.1436</td>
+<td>14.24</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>Office Supplies</td>
+<td>Paper</td>
+<td>78479.2060</td>
+<td>34053.5693</td>
+<td>43.39</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>Office Supplies</td>
+<td>Supplies</td>
+<td>46673.5380</td>
+<td>-1189.0995</td>
+<td>-2.55</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>Office Supplies</td>
+<td>Art</td>
+<td>27118.7920</td>
+<td>6527.7870</td>
+<td>24.07</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>Office Supplies</td>
+<td>Envelopes</td>
+<td>16476.4020</td>
+<td>6964.1767</td>
+<td>42.27</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15</th>
+<td>Office Supplies</td>
+<td>Labels</td>
+<td>12486.3120</td>
+<td>5546.2540</td>
+<td>44.42</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16</th>
+<td>Office Supplies</td>
+<td>Fasteners</td>
+<td>3024.2800</td>
+<td>949.5182</td>
+<td>31.40</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Technology products demonstrate strong profitability, particularly Copiers, which generate approximately 55,618 in profit with a profit margin of 37.20%. Phones also contribute substantial profit, totaling approximately 44,516. Within Office Supplies, Paper achieves a relatively high profit margin of 43.39%, while Binders generates approximately 30,222 in profit.</p>
+<p>However, profitability varies considerably across product sub-categories. Tables generate approximately 206,965 in sales but incur a loss of around 17,725, resulting in a negative profit margin of 8.56%. Bookcases and Supplies also generate negative profits, suggesting that high sales alone are not sufficient indicators of strong product performance.</p>
+</section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>How does discounting relate to profitability?</p>
+<div id="812c9169" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>WITH categorized_orders AS (</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    SELECT</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        CASE</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>            WHEN discount <span class="op">=</span> <span class="dv">0</span> THEN <span class="st">'No discount'</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>            WHEN discount <span class="op">&lt;=</span> <span class="fl">0.20</span> THEN <span class="st">'Low discount (0% &lt; x &lt;= 20%)'</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>            WHEN discount <span class="op">&lt;=</span> <span class="fl">0.50</span> THEN <span class="st">'Medium discount (20% &lt; x &lt;= 50%)'</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>            ELSE <span class="st">'High discount (&gt;50%)'</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        END AS discount_group,</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        sales,</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>        profit</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    FROM orders</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    discount_group,</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    SUM(sales) AS total_sales,</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    SUM(profit) AS total_profit,</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>        <span class="fl">100.0</span> <span class="op">*</span> SUM(profit) <span class="op">/</span> NULLIF(SUM(sales), <span class="dv">0</span>),</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    ) AS profit_margin_pct</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>FROM categorized_orders</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>GROUP BY discount_group</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>ORDER BY MIN(</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>    CASE discount_group</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>        WHEN <span class="st">'No discount'</span> THEN <span class="dv">1</span></span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>        WHEN <span class="st">'Low discount (0% &lt; x &lt;= 20%)'</span> THEN <span class="dv">2</span></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>        WHEN <span class="st">'Medium discount (20% &lt; x &lt;= 50%)'</span> THEN <span class="dv">3</span></span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>        ELSE <span class="dv">4</span></span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>    END</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">4 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">discount_group</th>
+<th data-quarto-table-cell-role="th">total_sales</th>
+<th data-quarto-table-cell-role="th">total_profit</th>
+<th data-quarto-table-cell-role="th">profit_margin_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>No discount</td>
+<td>1087908.4700</td>
+<td>320987.6032</td>
+<td>29.51</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Low discount (0% &lt; x &lt;= 20%)</td>
+<td>846522.2405</td>
+<td>100785.4745</td>
+<td>11.91</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Medium discount (20% &lt; x &lt;= 50%)</td>
+<td>298541.4118</td>
+<td>-58817.0047</td>
+<td>-19.70</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>High discount (&gt;50%)</td>
+<td>64228.7380</td>
+<td>-76559.0513</td>
+<td>-119.20</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The results show a clear association between higher discount levels and lower profitability. Orders without discounts generate approximately 320,988 in profit, with a profit margin of 29.51%. Orders with low discounts have a positive profit margin of 11.91%, while medium-discount orders produce a negative margin of 19.70%. High-discount orders perform worst, recording a negative profit margin of 119.20%.</p>
+<p>These findings suggest that substantial discounts may erode profit margins and lead to losses. However, this analysis shows an association rather than proving that discounts alone cause lower profitability, since product mix and other factors may also influence the results.</p>
+</section>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>Which customer segments contribute the most to sales and profit?</p>
+<div id="3b1de3ec" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    c.segment,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    COUNT(DISTINCT c.customer_id) AS total_customers,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    COUNT(DISTINCT o.order_id) AS total_orders,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    SUM(o.sales) AS total_sales,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    SUM(o.profit) AS total_profit,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        SUM(o.sales)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">/</span> NULLIF(COUNT(DISTINCT o.order_id), <span class="dv">0</span>),</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    ) AS sales_per_order</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>FROM orders AS o</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>LEFT JOIN customers AS c</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    ON o.customer_id <span class="op">=</span> c.customer_id</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>GROUP BY c.segment</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>ORDER BY total_sales DESC<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">3 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">segment</th>
+<th data-quarto-table-cell-role="th">total_customers</th>
+<th data-quarto-table-cell-role="th">total_orders</th>
+<th data-quarto-table-cell-role="th">total_sales</th>
+<th data-quarto-table-cell-role="th">total_profit</th>
+<th data-quarto-table-cell-role="th">sales_per_order</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Consumer</td>
+<td>409</td>
+<td>2586</td>
+<td>1161401.3450</td>
+<td>134119.2092</td>
+<td>449.11</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Corporate</td>
+<td>236</td>
+<td>1514</td>
+<td>706146.3668</td>
+<td>91979.1340</td>
+<td>466.41</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Home Office</td>
+<td>148</td>
+<td>909</td>
+<td>429653.1485</td>
+<td>60298.6785</td>
+<td>472.67</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The Consumer segment contributes the largest total sales, approximately 1.16 million, and the highest total profit, approximately 134,119. It also accounts for 2,586 orders from 409 customers. The Corporate segment generates approximately 706,146 in sales and 91,979 in profit, while Home Office generates approximately 429,653 in sales and 60,299 in profit.</p>
+<p>Although Consumer contributes the largest overall revenue and profit, Home Office records the highest average sales per order at approximately 472.67, followed by Corporate at 466.41 and Consumer at 449.11. This indicates that Home Office orders have a slightly higher average transaction value despite the segment’s smaller overall scale.</p>
+</section>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>Which regions and states perform best in terms of sales and profitability?</p>
+<div id="830c2269" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    c.region,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    c.state,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    SUM(o.sales) AS total_sales,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    SUM(o.profit) AS total_profit,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>        <span class="fl">100.0</span> <span class="op">*</span> SUM(o.profit)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">/</span> NULLIF(SUM(o.sales), <span class="dv">0</span>),</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    ) AS profit_margin_pct</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>FROM orders AS o</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>LEFT JOIN customers AS c</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    ON o.customer_id <span class="op">=</span> c.customer_id</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>GROUP BY</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    c.region,</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    c.state</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>ORDER BY total_sales DESC<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">41 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">total_sales</th>
+<th data-quarto-table-cell-role="th">total_profit</th>
+<th data-quarto-table-cell-role="th">profit_margin_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>West</td>
+<td>California</td>
+<td>451036.5823</td>
+<td>59398.3125</td>
+<td>13.17</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>East</td>
+<td>New York</td>
+<td>279549.8235</td>
+<td>58177.8341</td>
+<td>20.81</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Central</td>
+<td>Texas</td>
+<td>192758.2049</td>
+<td>20528.9110</td>
+<td>10.65</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>East</td>
+<td>Pennsylvania</td>
+<td>142838.5510</td>
+<td>13604.9350</td>
+<td>9.52</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>West</td>
+<td>Washington</td>
+<td>133177.2518</td>
+<td>24405.7966</td>
+<td>18.33</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>South</td>
+<td>North Carolina</td>
+<td>116635.4615</td>
+<td>-4236.6732</td>
+<td>-3.63</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Central</td>
+<td>Illinois</td>
+<td>112819.7720</td>
+<td>9560.1456</td>
+<td>8.47</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>West</td>
+<td>Arizona</td>
+<td>81986.1230</td>
+<td>9563.2001</td>
+<td>11.66</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>East</td>
+<td>Ohio</td>
+<td>74771.3300</td>
+<td>5985.8870</td>
+<td>8.01</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Central</td>
+<td>Michigan</td>
+<td>58076.8598</td>
+<td>7752.2969</td>
+<td>13.35</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>West</td>
+<td>Colorado</td>
+<td>57523.1162</td>
+<td>970.4647</td>
+<td>1.69</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>South</td>
+<td>Georgia</td>
+<td>51400.1450</td>
+<td>12781.3426</td>
+<td>24.87</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>Central</td>
+<td>Minnesota</td>
+<td>50062.3805</td>
+<td>7202.5225</td>
+<td>14.39</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>South</td>
+<td>Florida</td>
+<td>50002.9898</td>
+<td>750.7424</td>
+<td>1.50</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>South</td>
+<td>Virginia</td>
+<td>46521.2980</td>
+<td>6940.1112</td>
+<td>14.92</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15</th>
+<td>Central</td>
+<td>Wisconsin</td>
+<td>40970.2510</td>
+<td>8569.8697</td>
+<td>20.92</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16</th>
+<td>South</td>
+<td>Tennessee</td>
+<td>36733.5832</td>
+<td>3434.2765</td>
+<td>9.35</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">17</th>
+<td>South</td>
+<td>Alabama</td>
+<td>31038.9918</td>
+<td>2845.0624</td>
+<td>9.17</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">18</th>
+<td>South</td>
+<td>Kentucky</td>
+<td>29143.8450</td>
+<td>4513.3140</td>
+<td>15.49</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">19</th>
+<td>East</td>
+<td>Massachusetts</td>
+<td>28411.3450</td>
+<td>5905.5446</td>
+<td>20.79</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">20</th>
+<td>Central</td>
+<td>Indiana</td>
+<td>22977.8640</td>
+<td>2707.3495</td>
+<td>11.78</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21</th>
+<td>East</td>
+<td>Delaware</td>
+<td>21056.0850</td>
+<td>3336.3827</td>
+<td>15.85</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">22</th>
+<td>East</td>
+<td>New Jersey</td>
+<td>20267.0680</td>
+<td>2336.7532</td>
+<td>11.53</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">23</th>
+<td>South</td>
+<td>Mississippi</td>
+<td>19347.2450</td>
+<td>550.6659</td>
+<td>2.85</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">24</th>
+<td>East</td>
+<td>Connecticut</td>
+<td>18549.8010</td>
+<td>533.4987</td>
+<td>2.88</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">25</th>
+<td>West</td>
+<td>Oregon</td>
+<td>17327.1710</td>
+<td>234.0495</td>
+<td>1.35</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">26</th>
+<td>South</td>
+<td>Louisiana</td>
+<td>16625.8680</td>
+<td>2659.2401</td>
+<td>15.99</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">27</th>
+<td>West</td>
+<td>Utah</td>
+<td>16323.0270</td>
+<td>1818.1938</td>
+<td>11.14</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">28</th>
+<td>Central</td>
+<td>Missouri</td>
+<td>13013.1750</td>
+<td>2212.8747</td>
+<td>17.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">29</th>
+<td>East</td>
+<td>Rhode Island</td>
+<td>12782.8900</td>
+<td>2276.7013</td>
+<td>17.81</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">30</th>
+<td>Central</td>
+<td>Iowa</td>
+<td>12426.1470</td>
+<td>2258.5883</td>
+<td>18.18</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">31</th>
+<td>East</td>
+<td>New Hampshire</td>
+<td>9720.1460</td>
+<td>1519.1696</td>
+<td>15.63</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">32</th>
+<td>Central</td>
+<td>Nebraska</td>
+<td>6492.4100</td>
+<td>1166.0176</td>
+<td>17.96</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">33</th>
+<td>West</td>
+<td>New Mexico</td>
+<td>6046.1880</td>
+<td>1340.1399</td>
+<td>22.17</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">34</th>
+<td>Central</td>
+<td>Oklahoma</td>
+<td>5135.8180</td>
+<td>829.0182</td>
+<td>16.14</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">35</th>
+<td>South</td>
+<td>Arkansas</td>
+<td>4582.5560</td>
+<td>-62.9462</td>
+<td>-1.37</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">36</th>
+<td>Central</td>
+<td>South Dakota</td>
+<td>2339.5980</td>
+<td>682.5542</td>
+<td>29.17</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">37</th>
+<td>East</td>
+<td>District of Columbia</td>
+<td>2198.4500</td>
+<td>490.9567</td>
+<td>22.33</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">38</th>
+<td>Central</td>
+<td>Kansas</td>
+<td>1727.6520</td>
+<td>139.2008</td>
+<td>8.06</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">39</th>
+<td>East</td>
+<td>Maryland</td>
+<td>1588.8100</td>
+<td>436.6492</td>
+<td>27.48</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">40</th>
+<td>West</td>
+<td>Nevada</td>
+<td>1214.9860</td>
+<td>278.0678</td>
+<td>22.89</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>California is the strongest-performing state among the displayed results, generating approximately 451,037 in sales and 59,398 in profit. New York also performs well, recording approximately 279,550 in sales and 58,178 in profit, with a profit margin of 20.81%. Washington achieves a relatively high profit margin of 18.33%.</p>
+<p>However, regional performance is not uniformly positive. North Carolina generates approximately 116,635 in sales but records a loss of around 4,237, resulting in a negative profit margin of 3.63%. This indicates that certain markets may experience profitability challenges despite generating substantial sales.</p>
+</section>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>How do repeat customers contribute to overall sales?</p>
+<div id="8082b3e5" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>WITH customer_orders AS (</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    SELECT</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        customer_id,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        COUNT(DISTINCT order_id) AS total_orders,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        SUM(sales) AS total_sales,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        SUM(profit) AS total_profit</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    FROM orders</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    GROUP BY customer_id</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>customer_groups AS (</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    SELECT</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>        CASE</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>            WHEN total_orders <span class="op">&gt;</span> <span class="dv">1</span> THEN <span class="st">'Repeat customer'</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>            ELSE <span class="st">'One-time customer'</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>        END AS customer_type,</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>        customer_id,</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>        total_orders,</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>        total_sales,</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>        total_profit</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>    FROM customer_orders</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    customer_type,</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>    COUNT(<span class="op">*</span>) AS total_customers,</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>    SUM(total_orders) AS total_orders,</span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>    SUM(total_sales) AS total_sales,</span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>    SUM(total_profit) AS total_profit,</span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>    ROUND(AVG(total_sales), <span class="dv">2</span>) AS avg_sales_per_customer</span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>FROM customer_groups</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>GROUP BY customer_type</span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>ORDER BY total_sales DESC<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">2 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">customer_type</th>
+<th data-quarto-table-cell-role="th">total_customers</th>
+<th data-quarto-table-cell-role="th">total_orders</th>
+<th data-quarto-table-cell-role="th">total_sales</th>
+<th data-quarto-table-cell-role="th">total_profit</th>
+<th data-quarto-table-cell-role="th">avg_sales_per_customer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Repeat customer</td>
+<td>781</td>
+<td>4997</td>
+<td>2292033.2203</td>
+<td>285629.6471</td>
+<td>2934.74</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>One-time customer</td>
+<td>12</td>
+<td>12</td>
+<td>5167.6400</td>
+<td>767.3746</td>
+<td>430.64</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Repeat customers contribute approximately 2.29 million in sales and 285,630 in profit, compared with approximately 5,168 in sales and 767 in profit from one-time customers. The repeat-customer group also accounts for 4,997 orders, compared with only 12 orders from one-time customers.</p>
+<p>The results indicate that repeat customers represent the dominant source of sales and profit in this dataset. Their average sales per customer are approximately 2,934.74, substantially higher than the 430.64 recorded for one-time customers.</p>
+</section>
+<section id="question-7" class="level3">
+<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>How does shipping mode relate to delivery time and profitability?</p>
+<div id="de12d601" class="cell" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>SELECT</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    ship_mode,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    COUNT(DISTINCT order_id) AS total_orders,</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    ROUND(</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        AVG(ship_date <span class="op">-</span> order_date),</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    ) AS avg_shipping_days,</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    SUM(sales) AS total_sales,</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    SUM(profit) AS total_profit</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>FROM orders</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>GROUP BY ship_mode</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>ORDER BY avg_shipping_days<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<span style="None">Running query in 'postgresql://postgres:***@localhost:5432/sql_projects_db'</span>
+</div>
+<div class="cell-output cell-output-display">
+<span style="color: green">4 rows affected.</span>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ship_mode</th>
+<th data-quarto-table-cell-role="th">total_orders</th>
+<th data-quarto-table-cell-role="th">avg_shipping_days</th>
+<th data-quarto-table-cell-role="th">total_sales</th>
+<th data-quarto-table-cell-role="th">total_profit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Same Day</td>
+<td>264</td>
+<td>0.04</td>
+<td>128363.1250</td>
+<td>15891.7589</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>First Class</td>
+<td>787</td>
+<td>2.18</td>
+<td>351428.4229</td>
+<td>48969.8399</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Second Class</td>
+<td>964</td>
+<td>3.24</td>
+<td>459193.5694</td>
+<td>57446.6354</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Standard Class</td>
+<td>2994</td>
+<td>5.01</td>
+<td>1358215.7430</td>
+<td>164088.7875</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Standard Class accounts for the largest number of orders, with 2,994 orders, and generates approximately 1.36 million in sales and 164,089 in profit. Its average shipping duration is approximately 5.01 days. Second Class records an average shipping duration of 3.24 days, while First Class averages 2.18 days, same Day has the shortest average duration.</p>
+<p>First Class, Second Class, and Standard Class all generate positive total profits. Standard Class contributes the highest absolute profit, largely alongside its much larger order volume. These figures alone do not establish which shipping mode is the most profitable per order because the analysis does not compare profit margins or control for differences in order characteristics.</p>
+</section>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>This exploratory data analysis reveals several important patterns in the company’s sales performance, product profitability, customer behavior, and shipping operations.</p>
+<p>First, monthly sales fluctuate considerably over time, although an overall increase is visible toward the end of the observed period. Product-level analysis shows that strong sales do not necessarily translate into positive profit, with Tables, Bookcases, and Supplies emerging as examples of sub-categories that require further investigation. Discount analysis also reveals a strong negative association between higher discount levels and profitability, highlighting the importance of evaluating promotional strategies carefully.</p>
+<p>Second, the Consumer segment contributes the largest total sales and profit, while Home Office records the highest average sales per order among the three customer segments. Geographically, California and New York perform strongly in both sales and profit, whereas North Carolina records negative profitability among the displayed states. Repeat customers account for the overwhelming majority of sales and profit, emphasizing the potential importance of customer retention.</p>
+<p>Finally, Standard Class accounts for the largest share of orders and the highest absolute profit among the shipping modes examined. Nevertheless, additional cost and margin analysis is needed to assess shipping efficiency more comprehensively.</p>
+<p>Overall, the findings suggest that the company could improve its performance by reviewing high-discount transactions, addressing loss-making product sub-categories, strengthening customer retention, and investigating regional profitability differences. These results are descriptive and identify areas for further investigation rather than establishing causal relationships. Additional analyses incorporating shipping costs, product-level discount effects, customer purchasing patterns, and seasonal trends would provide a more comprehensive basis for business decisions.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

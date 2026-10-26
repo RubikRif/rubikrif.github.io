@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: Rifki Prakasya
+  favicon: images/logo.jpg
+  navbar:
+    background: dark
+    foreground: light
+    search: false
+format:
+  html:
+    theme: minty
+    css: styles.css
+    toc: true
+    grid: 
+      body-width: 1000px
+
+
+

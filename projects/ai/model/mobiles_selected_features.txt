@@ -1,0 +1,6 @@
+ram
+battery_power
+px_width
+px_height
+int_memory
+mobile_wt

@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-06-21">
+
+<title>Spotify Song’s Emotion Analysis – Rifki Prakasya</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo.jpg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d1bfd0e684c6c5b9787ae398316dc838.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Rifki Prakasya</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#install-and-import-packages" id="toc-install-and-import-packages" class="nav-link" data-scroll-target="#install-and-import-packages">Install and Import Packages</a></li>
+  <li><a href="#load-dataset" id="toc-load-dataset" class="nav-link" data-scroll-target="#load-dataset">Load Dataset</a></li>
+  <li><a href="#data-preprocessing-and-eda" id="toc-data-preprocessing-and-eda" class="nav-link" data-scroll-target="#data-preprocessing-and-eda">Data Preprocessing and EDA</a>
+  <ul class="collapse">
+  <li><a href="#check-and-drop-duplicated-rows-if-exist" id="toc-check-and-drop-duplicated-rows-if-exist" class="nav-link" data-scroll-target="#check-and-drop-duplicated-rows-if-exist">Check and Drop Duplicated Rows (If Exist)</a></li>
+  <li><a href="#check-missing-values" id="toc-check-missing-values" class="nav-link" data-scroll-target="#check-missing-values">Check Missing Values</a></li>
+  <li><a href="#numerical-features-scaling" id="toc-numerical-features-scaling" class="nav-link" data-scroll-target="#numerical-features-scaling">Numerical Features Scaling</a></li>
+  </ul></li>
+  <li><a href="#train-model-with-hyperparameter-tuning" id="toc-train-model-with-hyperparameter-tuning" class="nav-link" data-scroll-target="#train-model-with-hyperparameter-tuning">Train Model with Hyperparameter Tuning</a>
+  <ul class="collapse">
+  <li><a href="#hyperparameter-tuning-using-keras-tuner" id="toc-hyperparameter-tuning-using-keras-tuner" class="nav-link" data-scroll-target="#hyperparameter-tuning-using-keras-tuner">Hyperparameter Tuning Using Keras-Tuner</a></li>
+  <li><a href="#retrain-best-model" id="toc-retrain-best-model" class="nav-link" data-scroll-target="#retrain-best-model">Retrain Best Model</a></li>
+  </ul></li>
+  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a></li>
+  <li><a href="#save-model" id="toc-save-model" class="nav-link" data-scroll-target="#save-model">Save Model</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Spotify Song’s Emotion Analysis</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Deep Learning</div>
+    <div class="quarto-category">Classification</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 21, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<ol class="breadcrumb">
+<li class="breadcrumb-item">
+<a href="../../home.html">Home</a>
+</li>
+<li class="breadcrumb-item">
+<a href="../../projects/ai/index.html">Artificial Intelligence Projects</a>
+</li>
+<li class="breadcrumb-item active">
+Spotify Song’s Emotion Analysis
+</li>
+</ol>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This notebook investigates the implementation of artificial neural network (ANN) models to classify spotify song’s label using the following dataset.</p>
+<p><a href="data/spotify.csv" class="btn btn-secondary" role="button" download="" target="&quot;_blank"><i class="bi bi-download"></i> Download Dataset (.csv)</a></p>
+<p>The analysis covers these main steps:</p>
+<ol type="1">
+<li>Data preprocessing and Exploratory Data Analysis (EDA)</li>
+<li>Model training</li>
+<li>Model evaluation</li>
+</ol>
+<p>Additionally, hyperparameter tuning via <strong>Keras-Tuner</strong> is systematically applied across some model configurations to determine optimal model parameters and prevent overfitting.</p>
+<p>The objective of this notebook is to perform an end-to-end machine learning process, implement a Multi Layer Perceptron (MLP) model, and its hyperparameter tuning.</p>
+</section>
+<section id="install-and-import-packages" class="level2">
+<h2 class="anchored" data-anchor-id="install-and-import-packages">Install and Import Packages</h2>
+<div id="d73c85d9" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">--</span>upgrade <span class="op">-</span>q keras<span class="op">-</span>tuner matplotlib numpy pandas scikit<span class="op">-</span>learn tensorboard tensorflow</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="23358daa" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> keras_tuner <span class="im">as</span> kt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="load-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="load-dataset">Load Dataset</h2>
+<div id="0601ae33" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/spotify.csv'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">duration (ms)</th>
+<th data-quarto-table-cell-role="th">danceability</th>
+<th data-quarto-table-cell-role="th">energy</th>
+<th data-quarto-table-cell-role="th">loudness</th>
+<th data-quarto-table-cell-role="th">speechiness</th>
+<th data-quarto-table-cell-role="th">acousticness</th>
+<th data-quarto-table-cell-role="th">instrumentalness</th>
+<th data-quarto-table-cell-role="th">liveness</th>
+<th data-quarto-table-cell-role="th">valence</th>
+<th data-quarto-table-cell-role="th">tempo</th>
+<th data-quarto-table-cell-role="th">spec_rate</th>
+<th data-quarto-table-cell-role="th">labels</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>195000.0</td>
+<td>0.611</td>
+<td>0.614</td>
+<td>-8.815</td>
+<td>0.0672</td>
+<td>0.0169</td>
+<td>0.000794</td>
+<td>0.7530</td>
+<td>0.520</td>
+<td>128.050</td>
+<td>3.446154e-07</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>194641.0</td>
+<td>0.638</td>
+<td>0.781</td>
+<td>-6.848</td>
+<td>0.0285</td>
+<td>0.0118</td>
+<td>0.009530</td>
+<td>0.3490</td>
+<td>0.250</td>
+<td>122.985</td>
+<td>1.464234e-07</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>217573.0</td>
+<td>0.560</td>
+<td>0.810</td>
+<td>-8.029</td>
+<td>0.0872</td>
+<td>0.0071</td>
+<td>0.000008</td>
+<td>0.2410</td>
+<td>0.247</td>
+<td>170.044</td>
+<td>4.007850e-07</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>443478.0</td>
+<td>0.525</td>
+<td>0.699</td>
+<td>-4.571</td>
+<td>0.0353</td>
+<td>0.0178</td>
+<td>0.000088</td>
+<td>0.0888</td>
+<td>0.199</td>
+<td>92.011</td>
+<td>7.959809e-08</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>225862.0</td>
+<td>0.367</td>
+<td>0.771</td>
+<td>-5.863</td>
+<td>0.1060</td>
+<td>0.3650</td>
+<td>0.000001</td>
+<td>0.0965</td>
+<td>0.163</td>
+<td>115.917</td>
+<td>4.693131e-07</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="data-preprocessing-and-eda" class="level2">
+<h2 class="anchored" data-anchor-id="data-preprocessing-and-eda">Data Preprocessing and EDA</h2>
+<p>Let’s take a look at the overview of the dataset.</p>
+<div id="e4d34c81" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 277938 entries, 0 to 277937
+Data columns (total 12 columns):
+ #   Column            Non-Null Count   Dtype  
+---  ------            --------------   -----  
+ 0   duration (ms)     277938 non-null  float64
+ 1   danceability      277938 non-null  float64
+ 2   energy            277938 non-null  float64
+ 3   loudness          277938 non-null  float64
+ 4   speechiness       277938 non-null  float64
+ 5   acousticness      277938 non-null  float64
+ 6   instrumentalness  277938 non-null  float64
+ 7   liveness          277938 non-null  float64
+ 8   valence           277938 non-null  float64
+ 9   tempo             277938 non-null  float64
+ 10  spec_rate         277938 non-null  float64
+ 11  labels            277938 non-null  int64  
+dtypes: float64(11), int64(1)
+memory usage: 25.4 MB</code></pre>
+</div>
+</div>
+<p>Based on the output above, here are some informations about the dataset. - The dataset has 277938 rows and 12 columns. - The target variable is ‘labels’. - All features are already in numerical.</p>
+<p>Let’s also see the distribution of the target variable (labels).</p>
+<div id="afce13d1" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'labels'</span>].value_counts().plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spotify_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that the labels distribution is imbalance. However, we have massive amount of data (totaling over 270,000 samples). Even the smallest class (Class 3) contains around 40,000 sample which means more than sufficient for modern machine learning algorithms to learn the patterns and features of the class without suffering from a lack of data variety.</p>
+<section id="check-and-drop-duplicated-rows-if-exist" class="level3">
+<h3 class="anchored" data-anchor-id="check-and-drop-duplicated-rows-if-exist">Check and Drop Duplicated Rows (If Exist)</h3>
+<div id="75aab575" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check and drop duplicated rows (if exist)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>total_duplicates <span class="op">=</span> df.duplicated().<span class="bu">sum</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Total duplicated rows: </span><span class="sc">{</span>total_duplicates<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> total_duplicates:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.drop_duplicates().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'All duplicated rows has been removed.'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'No duplicated rows need to be dropped.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total duplicated rows: 1678
+All duplicated rows has been removed.</code></pre>
+</div>
+</div>
+</section>
+<section id="check-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="check-missing-values">Check Missing Values</h3>
+<div id="8a583e2e" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>duration (ms)       0
+danceability        0
+energy              0
+loudness            0
+speechiness         0
+acousticness        0
+instrumentalness    0
+liveness            0
+valence             0
+tempo               0
+spec_rate           0
+labels              0
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="numerical-features-scaling" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-features-scaling">Numerical Features Scaling</h3>
+<p>Based on the displayed df before, we can see that the numerical features exhibit vastly different scales and measurement ranges. MinMaxScaler is applied to transform all numerical features to transform the data into range <span class="math inline">\([0,1]\)</span>.</p>
+<p>Before that, split the the data into train, validation, and test set. Here, we are using 80:10:10 ratio for the train, validation, and test set, respectively.</p>
+<p>We must split our data first, to avoid data leakage</p>
+<div id="23c3c23a" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">'labels'</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[target].values</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>X_df <span class="op">=</span> df.drop(columns<span class="op">=</span>[target])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>X_train_df, X_valtest_df, y_train, y_valtest <span class="op">=</span> train_test_split(X_df, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>X_val_df, X_test_df, y_val, y_test <span class="op">=</span> train_test_split(X_valtest_df, y_valtest, test_size<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'X_train_df shape: </span><span class="sc">{</span>X_train_df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'X_val_df shape: </span><span class="sc">{</span>X_val_df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'X_test_df shape: </span><span class="sc">{</span>X_test_df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'y_train shape: </span><span class="sc">{</span>y_train<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'y_val shape: </span><span class="sc">{</span>y_val<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'y_test shape: </span><span class="sc">{</span>y_test<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X_train_df shape: (221008, 11)
+X_val_df shape: (27626, 11)
+X_test_df shape: (27626, 11)
+y_train shape: (221008,)
+y_val shape: (27626,)
+y_test shape: (27626,)</code></pre>
+</div>
+</div>
+<div id="792c78a2" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X_train_df.values</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>X_val <span class="op">=</span> X_val_df.values</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> X_test_df.values</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>X_train_scaled <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>X_val_scaled <span class="op">=</span> scaler.transform(X_val)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>X_test_scaled <span class="op">=</span> scaler.transform(X_test)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>X_train_scaled_df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X_train_scaled, columns<span class="op">=</span>X_df.columns)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>X_val_scaled_df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X_val_scaled, columns<span class="op">=</span>X_df.columns)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>X_test_scaled_df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>X_test_scaled, columns<span class="op">=</span>X_df.columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cc9e2eea" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X_train_scaled_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">duration (ms)</th>
+<th data-quarto-table-cell-role="th">danceability</th>
+<th data-quarto-table-cell-role="th">energy</th>
+<th data-quarto-table-cell-role="th">loudness</th>
+<th data-quarto-table-cell-role="th">speechiness</th>
+<th data-quarto-table-cell-role="th">acousticness</th>
+<th data-quarto-table-cell-role="th">instrumentalness</th>
+<th data-quarto-table-cell-role="th">liveness</th>
+<th data-quarto-table-cell-role="th">valence</th>
+<th data-quarto-table-cell-role="th">tempo</th>
+<th data-quarto-table-cell-role="th">spec_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0.063740</td>
+<td>0.496964</td>
+<td>0.7730</td>
+<td>0.855589</td>
+<td>0.033990</td>
+<td>0.019980</td>
+<td>0.000000</td>
+<td>0.1390</td>
+<td>0.2960</td>
+<td>0.350949</td>
+<td>0.002305</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>0.025156</td>
+<td>0.533401</td>
+<td>0.0896</td>
+<td>0.632955</td>
+<td>0.034404</td>
+<td>0.995984</td>
+<td>0.826000</td>
+<td>0.1070</td>
+<td>0.0509</td>
+<td>0.620996</td>
+<td>0.005683</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>0.087669</td>
+<td>0.741903</td>
+<td>0.6240</td>
+<td>0.777582</td>
+<td>0.051088</td>
+<td>0.143574</td>
+<td>0.016000</td>
+<td>0.3630</td>
+<td>0.9210</td>
+<td>0.491596</td>
+<td>0.002537</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>0.035692</td>
+<td>0.142713</td>
+<td>0.0193</td>
+<td>0.414395</td>
+<td>0.044767</td>
+<td>0.952811</td>
+<td>0.653000</td>
+<td>0.1080</td>
+<td>0.0642</td>
+<td>0.262751</td>
+<td>0.005312</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>0.042879</td>
+<td>0.738866</td>
+<td>0.3440</td>
+<td>0.820073</td>
+<td>0.065907</td>
+<td>0.945783</td>
+<td>0.000000</td>
+<td>0.7070</td>
+<td>0.7260</td>
+<td>0.549274</td>
+<td>0.006560</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">221003</th>
+<td>0.046574</td>
+<td>0.554656</td>
+<td>0.9870</td>
+<td>0.868472</td>
+<td>0.081244</td>
+<td>0.000134</td>
+<td>0.000303</td>
+<td>0.3430</td>
+<td>0.3810</td>
+<td>0.424925</td>
+<td>0.007468</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">221004</th>
+<td>0.033153</td>
+<td>0.614372</td>
+<td>0.5970</td>
+<td>0.788105</td>
+<td>0.032021</td>
+<td>0.235944</td>
+<td>0.005890</td>
+<td>0.1450</td>
+<td>0.4360</td>
+<td>0.497577</td>
+<td>0.004076</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">221005</th>
+<td>0.100396</td>
+<td>0.566802</td>
+<td>0.1440</td>
+<td>0.712119</td>
+<td>0.044560</td>
+<td>0.925703</td>
+<td>0.122000</td>
+<td>0.1040</td>
+<td>0.3280</td>
+<td>0.495401</td>
+<td>0.001937</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">221006</th>
+<td>0.092121</td>
+<td>0.776316</td>
+<td>0.7260</td>
+<td>0.803610</td>
+<td>0.043420</td>
+<td>0.000100</td>
+<td>0.924000</td>
+<td>0.0983</td>
+<td>0.0384</td>
+<td>0.522603</td>
+<td>0.002054</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">221007</th>
+<td>0.040220</td>
+<td>0.763158</td>
+<td>0.6010</td>
+<td>0.793119</td>
+<td>0.073679</td>
+<td>0.118474</td>
+<td>0.000236</td>
+<td>0.1220</td>
+<td>0.9040</td>
+<td>0.272965</td>
+<td>0.007799</td>
+</tr>
+</tbody>
+</table>
+
+<p>221008 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<div id="a5c71ca5" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X_val_scaled_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">duration (ms)</th>
+<th data-quarto-table-cell-role="th">danceability</th>
+<th data-quarto-table-cell-role="th">energy</th>
+<th data-quarto-table-cell-role="th">loudness</th>
+<th data-quarto-table-cell-role="th">speechiness</th>
+<th data-quarto-table-cell-role="th">acousticness</th>
+<th data-quarto-table-cell-role="th">instrumentalness</th>
+<th data-quarto-table-cell-role="th">liveness</th>
+<th data-quarto-table-cell-role="th">valence</th>
+<th data-quarto-table-cell-role="th">tempo</th>
+<th data-quarto-table-cell-role="th">spec_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0.038265</td>
+<td>0.820850</td>
+<td>0.433</td>
+<td>0.793921</td>
+<td>0.125389</td>
+<td>0.065161</td>
+<td>0.000000</td>
+<td>0.1040</td>
+<td>0.4220</td>
+<td>0.551462</td>
+<td>0.013921</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>0.101077</td>
+<td>0.386640</td>
+<td>0.476</td>
+<td>0.705547</td>
+<td>0.090674</td>
+<td>0.646586</td>
+<td>0.000001</td>
+<td>0.1190</td>
+<td>0.6580</td>
+<td>0.600142</td>
+<td>0.003915</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>0.053011</td>
+<td>0.812753</td>
+<td>0.701</td>
+<td>0.839173</td>
+<td>0.031710</td>
+<td>0.095984</td>
+<td>0.000000</td>
+<td>0.1150</td>
+<td>0.5020</td>
+<td>0.449020</td>
+<td>0.002572</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>0.035242</td>
+<td>0.400810</td>
+<td>0.156</td>
+<td>0.675970</td>
+<td>0.030674</td>
+<td>0.838353</td>
+<td>0.000014</td>
+<td>0.0791</td>
+<td>0.5140</td>
+<td>0.338461</td>
+<td>0.003684</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>0.051663</td>
+<td>0.466599</td>
+<td>0.749</td>
+<td>0.853506</td>
+<td>0.039378</td>
+<td>0.236948</td>
+<td>0.000000</td>
+<td>0.0998</td>
+<td>0.5640</td>
+<td>0.326683</td>
+<td>0.003274</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">27621</th>
+<td>0.055060</td>
+<td>0.434211</td>
+<td>0.754</td>
+<td>0.880367</td>
+<td>0.090777</td>
+<td>0.019277</td>
+<td>0.004810</td>
+<td>0.3440</td>
+<td>0.5600</td>
+<td>0.611745</td>
+<td>0.007097</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">27622</th>
+<td>0.044716</td>
+<td>0.605263</td>
+<td>0.775</td>
+<td>0.809843</td>
+<td>0.087979</td>
+<td>0.558233</td>
+<td>0.703000</td>
+<td>0.9000</td>
+<td>0.1560</td>
+<td>0.387921</td>
+<td>0.008411</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">27623</th>
+<td>0.077913</td>
+<td>0.405870</td>
+<td>0.330</td>
+<td>0.726113</td>
+<td>0.089430</td>
+<td>0.914659</td>
+<td>0.000000</td>
+<td>0.1010</td>
+<td>0.3350</td>
+<td>0.576855</td>
+<td>0.004985</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">27624</th>
+<td>0.045081</td>
+<td>0.387652</td>
+<td>0.936</td>
+<td>0.859708</td>
+<td>0.194819</td>
+<td>0.000748</td>
+<td>0.012300</td>
+<td>0.3400</td>
+<td>0.0495</td>
+<td>0.413796</td>
+<td>0.018479</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">27625</th>
+<td>0.060598</td>
+<td>0.622470</td>
+<td>0.718</td>
+<td>0.820289</td>
+<td>0.036269</td>
+<td>0.040361</td>
+<td>0.899000</td>
+<td>0.1040</td>
+<td>0.1740</td>
+<td>0.408174</td>
+<td>0.002584</td>
+</tr>
+</tbody>
+</table>
+
+<p>27626 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<div id="8435b71b" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X_test_scaled_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">duration (ms)</th>
+<th data-quarto-table-cell-role="th">danceability</th>
+<th data-quarto-table-cell-role="th">energy</th>
+<th data-quarto-table-cell-role="th">loudness</th>
+<th data-quarto-table-cell-role="th">speechiness</th>
+<th data-quarto-table-cell-role="th">acousticness</th>
+<th data-quarto-table-cell-role="th">instrumentalness</th>
+<th data-quarto-table-cell-role="th">liveness</th>
+<th data-quarto-table-cell-role="th">valence</th>
+<th data-quarto-table-cell-role="th">tempo</th>
+<th data-quarto-table-cell-role="th">spec_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0.067403</td>
+<td>0.574899</td>
+<td>0.0533</td>
+<td>0.676880</td>
+<td>0.042280</td>
+<td>0.951807</td>
+<td>0.002300</td>
+<td>0.1010</td>
+<td>0.212</td>
+<td>0.469763</td>
+<td>0.002715</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>0.059379</td>
+<td>0.277328</td>
+<td>0.8580</td>
+<td>0.841364</td>
+<td>0.032435</td>
+<td>0.380522</td>
+<td>0.208000</td>
+<td>0.1720</td>
+<td>0.488</td>
+<td>0.630508</td>
+<td>0.002357</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>0.051501</td>
+<td>0.732794</td>
+<td>0.6860</td>
+<td>0.840145</td>
+<td>0.218653</td>
+<td>0.021888</td>
+<td>0.000000</td>
+<td>0.0735</td>
+<td>0.451</td>
+<td>0.547094</td>
+<td>0.018237</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>0.041992</td>
+<td>0.695344</td>
+<td>0.5630</td>
+<td>0.852364</td>
+<td>0.039896</td>
+<td>0.061948</td>
+<td>0.000026</td>
+<td>0.4800</td>
+<td>0.542</td>
+<td>0.312390</td>
+<td>0.004052</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>0.065311</td>
+<td>0.593117</td>
+<td>0.6770</td>
+<td>0.796991</td>
+<td>0.030466</td>
+<td>0.043173</td>
+<td>0.093600</td>
+<td>0.0884</td>
+<td>0.562</td>
+<td>0.587886</td>
+<td>0.002018</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">27621</th>
+<td>0.041942</td>
+<td>0.527328</td>
+<td>0.9780</td>
+<td>0.904035</td>
+<td>0.283938</td>
+<td>0.209839</td>
+<td>0.272000</td>
+<td>0.4240</td>
+<td>0.175</td>
+<td>0.735547</td>
+<td>0.028869</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">27622</th>
+<td>0.056544</td>
+<td>0.579960</td>
+<td>0.5750</td>
+<td>0.807498</td>
+<td>0.036373</td>
+<td>0.765060</td>
+<td>0.569000</td>
+<td>0.2990</td>
+<td>0.199</td>
+<td>0.285494</td>
+<td>0.002771</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">27623</th>
+<td>0.156514</td>
+<td>0.341093</td>
+<td>0.7420</td>
+<td>0.861406</td>
+<td>0.040933</td>
+<td>0.585341</td>
+<td>0.000006</td>
+<td>0.1960</td>
+<td>0.373</td>
+<td>0.620955</td>
+<td>0.001148</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">27624</th>
+<td>0.052101</td>
+<td>0.699393</td>
+<td>0.7900</td>
+<td>0.845236</td>
+<td>0.058135</td>
+<td>0.024398</td>
+<td>0.000000</td>
+<td>0.0453</td>
+<td>0.734</td>
+<td>0.388031</td>
+<td>0.004795</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">27625</th>
+<td>0.071836</td>
+<td>0.582996</td>
+<td>0.8470</td>
+<td>0.820906</td>
+<td>0.034611</td>
+<td>0.011245</td>
+<td>0.037200</td>
+<td>0.1180</td>
+<td>0.622</td>
+<td>0.416482</td>
+<td>0.002089</td>
+</tr>
+</tbody>
+</table>
+
+<p>27626 rows × 11 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="train-model-with-hyperparameter-tuning" class="level2">
+<h2 class="anchored" data-anchor-id="train-model-with-hyperparameter-tuning">Train Model with Hyperparameter Tuning</h2>
+<section id="hyperparameter-tuning-using-keras-tuner" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameter-tuning-using-keras-tuner">Hyperparameter Tuning Using Keras-Tuner</h3>
+<div id="6f788854" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remember always make sure that the X_train/val/test and y_train/val/test are in float32 datatype</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and y_train/val/test is in form of 1 column</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X_train_scaled_df.values.astype(dtype<span class="op">=</span>np.float32)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> y_train.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>).astype(dtype<span class="op">=</span>np.float32)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>X_val <span class="op">=</span> X_val_scaled_df.values.astype(dtype<span class="op">=</span>np.float32)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>y_val <span class="op">=</span> y_val.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>).astype(dtype<span class="op">=</span>np.float32)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'X_train shape: </span><span class="sc">{</span>X_train<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'y_train shape: </span><span class="sc">{</span>y_train<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'X_val shape: </span><span class="sc">{</span>X_val<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'y_val shape: </span><span class="sc">{</span>y_val<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X_train shape: (221008, 11)
+y_train shape: (221008, 1)
+X_val shape: (27626, 11)
+y_val shape: (27626, 1)</code></pre>
+</div>
+</div>
+<div id="91cf8e11" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>input_size <span class="op">=</span> X_train.shape[<span class="dv">1</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_model(hp):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> tf.keras.Sequential()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    model.add(tf.keras.layers.Input(shape<span class="op">=</span>(input_size,)))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    n_hid_layers <span class="op">=</span> hp.Int(<span class="st">'n_hid_layers'</span>, min_value<span class="op">=</span><span class="dv">1</span>, max_value<span class="op">=</span><span class="dv">3</span>, step<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> layer <span class="kw">in</span> <span class="bu">range</span>(n_hid_layers):</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        n_neurons <span class="op">=</span> hp.Int(<span class="ss">f'n_neurons_</span><span class="sc">{</span>layer<span class="sc">}</span><span class="ss">'</span>, min_value<span class="op">=</span><span class="dv">8</span>, max_value<span class="op">=</span><span class="dv">128</span>, step<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        act <span class="op">=</span> hp.Choice(<span class="ss">f'activation_</span><span class="sc">{</span>layer<span class="sc">}</span><span class="ss">'</span>, </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                        [<span class="st">'linear'</span>, <span class="st">'relu'</span>, <span class="st">'sigmoid'</span>, <span class="st">'tanh'</span>])</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        model.add(tf.keras.layers.Dense(n_neurons, activation<span class="op">=</span>act))</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    model.add(tf.keras.layers.Dense(<span class="dv">4</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)) <span class="co"># multiclass</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    lr <span class="op">=</span> hp.Float(<span class="st">'learning_rate'</span>, <span class="fl">1e-5</span>, <span class="fl">1e-2</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    opt <span class="op">=</span> tf.keras.optimizers.AdamW(learning_rate<span class="op">=</span>lr)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'sparse_categorical_crossentropy'</span>, optimizer<span class="op">=</span>opt, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>]) <span class="co"># multiclass</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="0e86cffe" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tf.keras.backend.clear_session()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>tuner <span class="op">=</span> kt.BayesianOptimization(hypermodel<span class="op">=</span>build_model,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                                objective<span class="op">=</span><span class="st">'val_loss'</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                                max_trials<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                                directory<span class="op">=</span><span class="st">'tuner_dir_0'</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                                project_name<span class="op">=</span><span class="st">'tune_spotify_model'</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                                overwrite<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>tuner.search_space_summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Search space summary
+Default search space size: 4
+n_hid_layers (Int)
+{'default': None, 'conditions': [], 'min_value': 1, 'max_value': 3, 'step': 1, 'sampling': 'linear'}
+n_neurons_0 (Int)
+{'default': None, 'conditions': [], 'min_value': 8, 'max_value': 128, 'step': 8, 'sampling': 'linear'}
+activation_0 (Choice)
+{'default': 'linear', 'conditions': [], 'values': ['linear', 'relu', 'sigmoid', 'tanh'], 'ordered': False}
+learning_rate (Float)
+{'default': 1e-05, 'conditions': [], 'min_value': 1e-05, 'max_value': 0.01, 'step': None, 'sampling': 'linear'}</code></pre>
+</div>
+</div>
+<p>Find the best hyperparameters.</p>
+<div id="5be80b42" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tuner.search(X_train, y_train, validation_data<span class="op">=</span>(X_val, y_val),</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>             epochs<span class="op">=</span><span class="dv">100</span>, batch_size<span class="op">=</span><span class="dv">256</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Trial 10 Complete [00h 02m 24s]
+val_loss: 0.2080817073583603
+
+Best val_loss So Far: 0.18831150233745575
+Total elapsed time: 00h 23m 55s</code></pre>
+</div>
+</div>
+<div id="afa0ac05" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tuner.results_summary(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Results summary
+Results in tuner_dir_0\tune_spotify_model
+Showing 3 best trials
+Objective(name="val_loss", direction="min")
+
+Trial 08 summary
+Hyperparameters:
+n_hid_layers: 3
+n_neurons_0: 48
+activation_0: tanh
+learning_rate: 0.000635494810129079
+n_neurons_1: 120
+activation_1: tanh
+n_neurons_2: 40
+activation_2: tanh
+Score: 0.18831150233745575
+
+Trial 09 summary
+Hyperparameters:
+n_hid_layers: 2
+n_neurons_0: 96
+activation_0: relu
+learning_rate: 0.008251039712329468
+n_neurons_1: 40
+activation_1: linear
+n_neurons_2: 48
+activation_2: tanh
+Score: 0.2080817073583603
+
+Trial 03 summary
+Hyperparameters:
+n_hid_layers: 1
+n_neurons_0: 32
+activation_0: relu
+learning_rate: 0.004561689776561494
+n_neurons_1: 16
+activation_1: sigmoid
+n_neurons_2: 104
+activation_2: relu
+Score: 0.2286299765110016</code></pre>
+</div>
+</div>
+</section>
+<section id="retrain-best-model" class="level3">
+<h3 class="anchored" data-anchor-id="retrain-best-model">Retrain Best Model</h3>
+<div id="e4a73423" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> build_model(tuner.get_best_hyperparameters()[<span class="dv">0</span>])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential_1"</span>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ dense_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">48</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">576</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_4 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">120</span>)            │         <span style="color: #00af00; text-decoration-color: #00af00">5,880</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_5 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">40</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">4,840</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_6 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">4</span>)              │           <span style="color: #00af00; text-decoration-color: #00af00">164</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">11,460</span> (44.77 KB)
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">11,460</span> (44.77 KB)
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div>
+</div>
+<div id="03b8f63d" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>early_stop <span class="op">=</span> tf.keras.callbacks.EarlyStopping(patience<span class="op">=</span><span class="dv">10</span>, monitor<span class="op">=</span><span class="st">'val_loss'</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                              restore_best_weights<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                                              verbose<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(X_train, y_train, validation_data<span class="op">=</span>(X_val, y_val),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                    epochs<span class="op">=</span><span class="dv">500</span>, batch_size<span class="op">=</span><span class="dv">256</span>, callbacks<span class="op">=</span>[early_stop])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre>Epoch 1/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">3s</span> 2ms/step - accuracy: 0.8158 - loss: 0.4543 - val_accuracy: 0.8425 - val_loss: 0.3840
+
+Epoch 2/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8489 - loss: 0.3678 - val_accuracy: 0.8511 - val_loss: 0.3580
+
+Epoch 3/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8553 - loss: 0.3492 - val_accuracy: 0.8584 - val_loss: 0.3417
+
+Epoch 4/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8614 - loss: 0.3328 - val_accuracy: 0.8645 - val_loss: 0.3248
+
+Epoch 5/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8661 - loss: 0.3180 - val_accuracy: 0.8644 - val_loss: 0.3175
+
+Epoch 6/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8706 - loss: 0.3054 - val_accuracy: 0.8732 - val_loss: 0.3022
+
+Epoch 7/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8741 - loss: 0.2967 - val_accuracy: 0.8718 - val_loss: 0.2994
+
+Epoch 8/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8766 - loss: 0.2899 - val_accuracy: 0.8785 - val_loss: 0.2857
+
+Epoch 9/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8794 - loss: 0.2837 - val_accuracy: 0.8797 - val_loss: 0.2852
+
+Epoch 10/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8817 - loss: 0.2787 - val_accuracy: 0.8827 - val_loss: 0.2767
+
+Epoch 11/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8827 - loss: 0.2742 - val_accuracy: 0.8847 - val_loss: 0.2717
+
+Epoch 12/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8848 - loss: 0.2709 - val_accuracy: 0.8848 - val_loss: 0.2716
+
+Epoch 13/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8860 - loss: 0.2670 - val_accuracy: 0.8873 - val_loss: 0.2648
+
+Epoch 14/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8875 - loss: 0.2640 - val_accuracy: 0.8879 - val_loss: 0.2634
+
+Epoch 15/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8888 - loss: 0.2612 - val_accuracy: 0.8895 - val_loss: 0.2611
+
+Epoch 16/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8897 - loss: 0.2588 - val_accuracy: 0.8887 - val_loss: 0.2610
+
+Epoch 17/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8909 - loss: 0.2568 - val_accuracy: 0.8920 - val_loss: 0.2577
+
+Epoch 18/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8911 - loss: 0.2552 - val_accuracy: 0.8856 - val_loss: 0.2639
+
+Epoch 19/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8926 - loss: 0.2532 - val_accuracy: 0.8931 - val_loss: 0.2507
+
+Epoch 20/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8927 - loss: 0.2516 - val_accuracy: 0.8923 - val_loss: 0.2522
+
+Epoch 21/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8937 - loss: 0.2502 - val_accuracy: 0.8906 - val_loss: 0.2551
+
+Epoch 22/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8940 - loss: 0.2482 - val_accuracy: 0.8883 - val_loss: 0.2593
+
+Epoch 23/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8948 - loss: 0.2474 - val_accuracy: 0.8942 - val_loss: 0.2470
+
+Epoch 24/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8956 - loss: 0.2455 - val_accuracy: 0.8929 - val_loss: 0.2491
+
+Epoch 25/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8958 - loss: 0.2443 - val_accuracy: 0.8960 - val_loss: 0.2443
+
+Epoch 26/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.8963 - loss: 0.2431 - val_accuracy: 0.8971 - val_loss: 0.2429
+
+Epoch 27/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8971 - loss: 0.2410 - val_accuracy: 0.8993 - val_loss: 0.2396
+
+Epoch 28/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8973 - loss: 0.2412 - val_accuracy: 0.8928 - val_loss: 0.2502
+
+Epoch 29/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8981 - loss: 0.2394 - val_accuracy: 0.8972 - val_loss: 0.2410
+
+Epoch 30/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8985 - loss: 0.2386 - val_accuracy: 0.8989 - val_loss: 0.2414
+
+Epoch 31/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8989 - loss: 0.2374 - val_accuracy: 0.9003 - val_loss: 0.2356
+
+Epoch 32/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.8997 - loss: 0.2359 - val_accuracy: 0.8991 - val_loss: 0.2381
+
+Epoch 33/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9001 - loss: 0.2344 - val_accuracy: 0.8935 - val_loss: 0.2492
+
+Epoch 34/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9008 - loss: 0.2338 - val_accuracy: 0.8956 - val_loss: 0.2444
+
+Epoch 35/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9007 - loss: 0.2321 - val_accuracy: 0.8989 - val_loss: 0.2383
+
+Epoch 36/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9015 - loss: 0.2311 - val_accuracy: 0.9013 - val_loss: 0.2329
+
+Epoch 37/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9016 - loss: 0.2307 - val_accuracy: 0.9009 - val_loss: 0.2338
+
+Epoch 38/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9026 - loss: 0.2288 - val_accuracy: 0.9031 - val_loss: 0.2300
+
+Epoch 39/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9031 - loss: 0.2277 - val_accuracy: 0.9030 - val_loss: 0.2318
+
+Epoch 40/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9035 - loss: 0.2271 - val_accuracy: 0.9035 - val_loss: 0.2290
+
+Epoch 41/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9032 - loss: 0.2264 - val_accuracy: 0.9037 - val_loss: 0.2261
+
+Epoch 42/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">3s</span> 3ms/step - accuracy: 0.9039 - loss: 0.2254 - val_accuracy: 0.9039 - val_loss: 0.2264
+
+Epoch 43/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">3s</span> 3ms/step - accuracy: 0.9044 - loss: 0.2247 - val_accuracy: 0.9055 - val_loss: 0.2229
+
+Epoch 44/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9047 - loss: 0.2239 - val_accuracy: 0.9041 - val_loss: 0.2281
+
+Epoch 45/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9052 - loss: 0.2221 - val_accuracy: 0.9024 - val_loss: 0.2275
+
+Epoch 46/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9055 - loss: 0.2226 - val_accuracy: 0.9061 - val_loss: 0.2212
+
+Epoch 47/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9058 - loss: 0.2217 - val_accuracy: 0.9068 - val_loss: 0.2198
+
+Epoch 48/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9070 - loss: 0.2190 - val_accuracy: 0.9063 - val_loss: 0.2217
+
+Epoch 49/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9070 - loss: 0.2188 - val_accuracy: 0.9052 - val_loss: 0.2221
+
+Epoch 50/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9076 - loss: 0.2175 - val_accuracy: 0.9083 - val_loss: 0.2196
+
+Epoch 51/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9074 - loss: 0.2172 - val_accuracy: 0.9064 - val_loss: 0.2207
+
+Epoch 52/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9078 - loss: 0.2163 - val_accuracy: 0.9097 - val_loss: 0.2149
+
+Epoch 53/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9080 - loss: 0.2156 - val_accuracy: 0.9090 - val_loss: 0.2166
+
+Epoch 54/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9088 - loss: 0.2148 - val_accuracy: 0.9106 - val_loss: 0.2128
+
+Epoch 55/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9090 - loss: 0.2136 - val_accuracy: 0.9083 - val_loss: 0.2148
+
+Epoch 56/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9097 - loss: 0.2119 - val_accuracy: 0.9109 - val_loss: 0.2118
+
+Epoch 57/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9098 - loss: 0.2118 - val_accuracy: 0.9089 - val_loss: 0.2148
+
+Epoch 58/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9096 - loss: 0.2119 - val_accuracy: 0.9020 - val_loss: 0.2269
+
+Epoch 59/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9104 - loss: 0.2104 - val_accuracy: 0.9093 - val_loss: 0.2143
+
+Epoch 60/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9107 - loss: 0.2090 - val_accuracy: 0.9087 - val_loss: 0.2157
+
+Epoch 61/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9109 - loss: 0.2091 - val_accuracy: 0.9089 - val_loss: 0.2127
+
+Epoch 62/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9111 - loss: 0.2079 - val_accuracy: 0.9111 - val_loss: 0.2079
+
+Epoch 63/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9115 - loss: 0.2071 - val_accuracy: 0.9104 - val_loss: 0.2104
+
+Epoch 64/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9119 - loss: 0.2062 - val_accuracy: 0.9129 - val_loss: 0.2063
+
+Epoch 65/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9129 - loss: 0.2050 - val_accuracy: 0.9113 - val_loss: 0.2073
+
+Epoch 66/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9125 - loss: 0.2054 - val_accuracy: 0.9125 - val_loss: 0.2038
+
+Epoch 67/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9125 - loss: 0.2039 - val_accuracy: 0.9125 - val_loss: 0.2054
+
+Epoch 68/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9139 - loss: 0.2026 - val_accuracy: 0.9106 - val_loss: 0.2075
+
+Epoch 69/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9139 - loss: 0.2024 - val_accuracy: 0.9133 - val_loss: 0.2041
+
+Epoch 70/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9139 - loss: 0.2018 - val_accuracy: 0.9137 - val_loss: 0.2027
+
+Epoch 71/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9143 - loss: 0.2012 - val_accuracy: 0.9128 - val_loss: 0.2034
+
+Epoch 72/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9145 - loss: 0.2015 - val_accuracy: 0.9147 - val_loss: 0.2013
+
+Epoch 73/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9152 - loss: 0.1995 - val_accuracy: 0.9129 - val_loss: 0.2048
+
+Epoch 74/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9149 - loss: 0.1995 - val_accuracy: 0.9110 - val_loss: 0.2068
+
+Epoch 75/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9157 - loss: 0.1975 - val_accuracy: 0.9141 - val_loss: 0.2016
+
+Epoch 76/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9153 - loss: 0.1978 - val_accuracy: 0.9153 - val_loss: 0.2000
+
+Epoch 77/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9161 - loss: 0.1969 - val_accuracy: 0.9165 - val_loss: 0.1979
+
+Epoch 78/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9153 - loss: 0.1977 - val_accuracy: 0.9104 - val_loss: 0.2087
+
+Epoch 79/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9166 - loss: 0.1953 - val_accuracy: 0.9138 - val_loss: 0.2035
+
+Epoch 80/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9165 - loss: 0.1966 - val_accuracy: 0.9124 - val_loss: 0.2052
+
+Epoch 81/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9158 - loss: 0.1957 - val_accuracy: 0.9141 - val_loss: 0.1990
+
+Epoch 82/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9170 - loss: 0.1941 - val_accuracy: 0.9124 - val_loss: 0.1990
+
+Epoch 83/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9172 - loss: 0.1940 - val_accuracy: 0.9157 - val_loss: 0.1956
+
+Epoch 84/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9174 - loss: 0.1938 - val_accuracy: 0.9151 - val_loss: 0.2020
+
+Epoch 85/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9174 - loss: 0.1932 - val_accuracy: 0.9160 - val_loss: 0.1974
+
+Epoch 86/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9182 - loss: 0.1915 - val_accuracy: 0.9174 - val_loss: 0.1946
+
+Epoch 87/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9180 - loss: 0.1918 - val_accuracy: 0.9167 - val_loss: 0.1969
+
+Epoch 88/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9185 - loss: 0.1916 - val_accuracy: 0.9160 - val_loss: 0.1945
+
+Epoch 89/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9186 - loss: 0.1901 - val_accuracy: 0.9165 - val_loss: 0.1956
+
+Epoch 90/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9181 - loss: 0.1914 - val_accuracy: 0.9169 - val_loss: 0.1941
+
+Epoch 91/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9194 - loss: 0.1892 - val_accuracy: 0.9111 - val_loss: 0.2105
+
+Epoch 92/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9187 - loss: 0.1893 - val_accuracy: 0.9190 - val_loss: 0.1924
+
+Epoch 93/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9194 - loss: 0.1886 - val_accuracy: 0.9147 - val_loss: 0.1967
+
+Epoch 94/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 3ms/step - accuracy: 0.9194 - loss: 0.1884 - val_accuracy: 0.9151 - val_loss: 0.1954
+
+Epoch 95/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9192 - loss: 0.1881 - val_accuracy: 0.9190 - val_loss: 0.1901
+
+Epoch 96/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9195 - loss: 0.1872 - val_accuracy: 0.9168 - val_loss: 0.1932
+
+Epoch 97/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9195 - loss: 0.1877 - val_accuracy: 0.9152 - val_loss: 0.1951
+
+Epoch 98/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9204 - loss: 0.1864 - val_accuracy: 0.9152 - val_loss: 0.1942
+
+Epoch 99/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9203 - loss: 0.1857 - val_accuracy: 0.9165 - val_loss: 0.1931
+
+Epoch 100/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9204 - loss: 0.1858 - val_accuracy: 0.9170 - val_loss: 0.1963
+
+Epoch 101/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9205 - loss: 0.1855 - val_accuracy: 0.9160 - val_loss: 0.1929
+
+Epoch 102/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9212 - loss: 0.1846 - val_accuracy: 0.9174 - val_loss: 0.1902
+
+Epoch 103/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9210 - loss: 0.1845 - val_accuracy: 0.9172 - val_loss: 0.1909
+
+Epoch 104/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9211 - loss: 0.1838 - val_accuracy: 0.9184 - val_loss: 0.1913
+
+Epoch 105/500
+
+<span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 2ms/step - accuracy: 0.9212 - loss: 0.1844 - val_accuracy: 0.9181 - val_loss: 0.1905
+
+Epoch 105: early stopping
+
+Restoring model weights from the end of the best epoch: 95.
+</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="model-evaluation">Model Evaluation</h2>
+<div id="3ad93b13" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> history.history[<span class="st">'loss'</span>]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>val_loss <span class="op">=</span> history.history[<span class="st">'val_loss'</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="bu">range</span>(<span class="bu">len</span>(loss))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, loss)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, val_loss)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'loss'</span>, <span class="st">'val_loss'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Train Loss vs Val Loss'</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spotify_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Learning Behavior: Both training loss and validation loss exhibit a smooth, steady decline from around 0.45 down to ~0.18 over 100+ epochs.</p></li>
+<li><p>Generalization Capability: The validation loss curve closely tracks the training loss curve without diverging upward. This indicates that the model generalizes remarkably well to unseen data and shows no signs of overfitting.</p></li>
+<li><p>Convergence: The minor fluctuations in val_loss are typical in mini-batch gradient descent. Overall, the model reaches a stable convergence around epoch 80–100.</p></li>
+</ul>
+<div id="0eb5d9d0" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remember always make sure that the X_train/test and y_train/test are in float32 datatype</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and y_train/test is in form of 1 column</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> X_test_scaled_df.values.astype(dtype<span class="op">=</span>np.float32)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> y_test.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>).astype(dtype<span class="op">=</span>np.float32)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="20366a49" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>model.evaluate(X_test, y_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-bold">864/864</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">1s</span> 1ms/step - accuracy: 0.9218 - loss: 0.1833
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>[0.1833219975233078, 0.9217765927314758]</code></pre>
+</div>
+</div>
+<div id="a35200bd" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>y_pred_softprob <span class="op">=</span> model(X_test)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> np.argmax(y_pred_softprob, axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0 0 1 ... 0 1 0]</code></pre>
+</div>
+</div>
+<div id="a8ecea26" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Classification Report ---"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> classification_report(y_test, y_pred)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Classification Report:</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Confusion Matrix ---"</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>disp.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- Classification Report ---
+Classification Report:
+
+              precision    recall  f1-score   support
+
+         0.0       0.93      0.94      0.93      8211
+         1.0       0.91      0.92      0.91     10511
+         2.0       0.89      0.86      0.87      4632
+         3.0       0.97      0.96      0.97      4272
+
+    accuracy                           0.92     27626
+   macro avg       0.93      0.92      0.92     27626
+weighted avg       0.92      0.92      0.92     27626
+
+--- Confusion Matrix ---</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="spotify_files/figure-html/cell-25-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The model achieves an overall <strong>accuracy of 92%</strong> across a test set of 27,626 samples, with both macro F1-score (0.92) and weighted F1-score (0.92) reflecting high performance across all classes.</p>
+<p>The primary source of error occurs between Class 2 and Class 1, where 580 true Class 2 samples were misclassified as Class 1, and 445 true Class 1 samples were misclassified as Class 2. This suggests some feature overlap between these two categories.</p>
+<p><strong>Conclusion:</strong></p>
+<p>The Multi-Layer Perceptron (MLP) model demonstrates robust learning dynamics and high predictive capability across all metrics. Despite the initial class imbalance, the high macro-average F1-score (0.92) confirms that minority classes (such as Class 2 and Class 3) are classified with strong accuracy and reliability.</p>
+</section>
+<section id="save-model" class="level2">
+<h2 class="anchored" data-anchor-id="save-model">Save Model</h2>
+<div id="570c9e86" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'model/spotify_mlp.keras'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

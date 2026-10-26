@@ -1,0 +1,87 @@
+---
+title: "Online Pet Supply Store Analysis"
+description: ' '
+date: 2026-10-01
+categories: [Data Analysis, Data Visualization, PowerBI]
+image: images/online-pet-supply-store.jpg
+---
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item"><a href="../da/index.qmd">Data Analytics Projects</a></li>
+  <li class="breadcrumb-item active">Online Pet Supply Store Analysis</li>
+</ol>
+
+## Overview
+
+In this project, we'll work with a fictitious dataset from an online pet supply company called Whiskique, to uncover insights into the company's overall performance and possible improvement opportunities. Firstly, we will examine some important terms and operations involved in ecommerce businesses.
+
+Let's look at an illustrative example of the total costs for canned pet food through various stages in the supply chain. 
+
+![](images/olpetsupplystore-ops.png)
+
+In this example, for a $20 purchase of canned pet food, $4 goes to the manufacturer. This is also called the cost of goods sold or COGS. one dollar and 50 cents is spent on freight costs and fulfillment fees. This includes the cost to ship a product from the manufacturer to the warehouse and the warehouse storage fees. Last-mile delivery to customers costs $5. This leaves a profit markup of $8 before administrative costs.
+
+Whiskique pet supply has **two primary business goals**. 
+
+1. The first is to **serve as many customers as possible and increase sales**. 
+
+2. The second is to **reduce its operating expenses**.
+
+For sales growth, we can focus on upsell and cross-sell opportunities. In a cross-sell, we promote a relevant product at the point of purchase. For example, when a customer is ready to buy a beach umbrella, present an offer on beach chairs. We can implement a **market basket analysis** that aims to find products frequently bought together in a single checkout. Meanwhile in an upsell, we promote a higher-priced alternative or a higher quantity of a product. For example, when a customer buys pet food regularly, present an offer on organic food.
+
+For shipping cost reductions, we can explore some of the following alternatives. Consolidating multiple shipments into a single one. Reducing package size dimensions and weight. And, finally, shipping a higher quantity of a product.
+
+### Dataset
+
+The data consists of **four CSV files**:
+
+- The **sales table** is the primary transaction table or the *fact table*. 
+
+- The **product table** and **customer table** contain additional attributes. The **state mapping** has consistent values for locations. These tables are called *dimension tables*.
+
+[<i class="bi bi-download"></i> Download Datasets (.zip)](data/online-pet-supply-store.zip){.btn .btn-secondary role="button" download="" target="_blank}
+
+[See Metadata](https://docs.google.com/spreadsheets/d/1FbMaqOgVeZrt61TnYkdA88lNTxf5HSC1A1tdCVVt-00/edit?usp=sharing){.btn .btn-outline-success role="button" target="_blank}
+
+### Tools & Technologies
+
+- Microsoft PowerBI
+
+- Power Query
+
+- DAX 
+
+- Data Modeling
+
+## Data Preparation
+
+**Data Transformation using Power Query**
+
+![](images/olpetsupplystore-model.png)
+
+## Dashboard
+
+![Dashboard Demo](images/olpetsupplystore.gif)
+
+[Download Dashboard (.pbix)](dashboard/ecommerce-analysis.pbix){.btn .btn-warning role="button" download="" target="_blank}
+
+## Key Findings
+
+### Executive Summary
+
+* Test
+
+### Goal 1: Increase Sales
+
+#### Market Basket Analysis & Cross-Selling Opportunity
+
+* Test
+
+#### Upselling Strategy
+
+* Test
+
+## Goal 2: Shipping Cost Reductions
+
+* Tes

@@ -1,0 +1,21 @@
+---
+title: "Customer Churn"
+description: ' '
+date: 2026-05-15
+categories: [Data Analysis, Data Visualization, Excel]
+image: images/customer-churn.jpg
+---
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item"><a href="../da/index.qmd">Data Analytics Projects</a></li>
+  <li class="breadcrumb-item active">Customer Churn</li>
+</ol>
+
+## Description
+
+## Dashboard
+
+(The loading usually takes quite a long time.)
+
+<iframe width="1000" height="664" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/ce411b21bd83815f/IQRpZmQz2D_0SZNPhYtXi_48AXUgTmhJAKAGnuUzGNGA8ns?em=2&wdAllowInteractivity=False&Item=dashboard&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
