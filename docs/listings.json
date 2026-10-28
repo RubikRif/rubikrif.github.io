@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/projects/auto/index.html",
+    "items": [
+      "/projects/auto/healthy-spiders.html"
+    ]
+  },
+  {
     "listing": "/projects/ai/index.html",
     "items": [
       "/projects/ai/transportation-ts.html",
@@ -10,12 +16,6 @@
       "/projects/ai/ckd.html",
       "/projects/ai/mobiles.html",
       "/projects/ai/house-price.html"
-    ]
-  },
-  {
-    "listing": "/projects/auto/index.html",
-    "items": [
-      "/projects/auto/healthy-spiders.html"
     ]
   },
   {
