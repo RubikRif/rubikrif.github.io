@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -107,9 +136,21 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
   <li><a href="#tools-technologies" id="toc-tools-technologies" class="nav-link" data-scroll-target="#tools-technologies">Tools &amp; Technologies</a></li>
   </ul></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning-and-transformation-using-power-query" id="toc-data-cleaning-and-transformation-using-power-query" class="nav-link" data-scroll-target="#data-cleaning-and-transformation-using-power-query">Data Cleaning and Transformation using Power Query</a></li>
+  <li><a href="#calculated-columns-and-table-summarization-using-dax" id="toc-calculated-columns-and-table-summarization-using-dax" class="nav-link" data-scroll-target="#calculated-columns-and-table-summarization-using-dax">Calculated Columns and Table Summarization using DAX</a></li>
+  <li><a href="#data-modeling" id="toc-data-modeling" class="nav-link" data-scroll-target="#data-modeling">Data Modeling</a></li>
+  <li><a href="#key-measures-and-dynamic-metrics-using-dax" id="toc-key-measures-and-dynamic-metrics-using-dax" class="nav-link" data-scroll-target="#key-measures-and-dynamic-metrics-using-dax">Key Measures and Dynamic Metrics using DAX</a></li>
+  </ul></li>
   <li><a href="#dashboard" id="toc-dashboard" class="nav-link" data-scroll-target="#dashboard">Dashboard</a></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
+  <li><a href="#key-insights-and-recommendations" id="toc-key-insights-and-recommendations" class="nav-link" data-scroll-target="#key-insights-and-recommendations">Key Insights and Recommendations</a>
+  <ul class="collapse">
+  <li><a href="#a.-macro-operational-benchmarks" id="toc-a.-macro-operational-benchmarks" class="nav-link" data-scroll-target="#a.-macro-operational-benchmarks">A. Macro Operational Benchmarks</a></li>
+  <li><a href="#b.-key-drivers-of-extended-length-of-stay-los" id="toc-b.-key-drivers-of-extended-length-of-stay-los" class="nav-link" data-scroll-target="#b.-key-drivers-of-extended-length-of-stay-los">B. Key Drivers of Extended Length of Stay (LOS)</a></li>
+  <li><a href="#c.-financial-impact-hospital-outliers-los-vs.-cost-correlation" id="toc-c.-financial-impact-hospital-outliers-los-vs.-cost-correlation" class="nav-link" data-scroll-target="#c.-financial-impact-hospital-outliers-los-vs.-cost-correlation">C. Financial Impact &amp; Hospital Outliers (LOS vs.&nbsp;Cost Correlation)</a></li>
+  <li><a href="#strategic-recommendations-for-hospital-operations" id="toc-strategic-recommendations-for-hospital-operations" class="nav-link" data-scroll-target="#strategic-recommendations-for-hospital-operations">Strategic Recommendations for Hospital Operations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -172,7 +213,7 @@ Analyzing Healthcare Data
 <p>This project presents an interactive dashboard that enables stakeholders to: Progress through key insights in a logical flow, View informative, concise visuals Get data they need to make business decisions for improving efficiency.</p>
 <section id="dataset" class="level3">
 <h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
-<p>For this project, we will be working with a dataset that includes New York state-wide hospital discharge data for a year (2016). Elective hip replacement surgery was the main reason for their hospital stay. The dataset is one single table with 30 columns Each row in the dataset represents a single inpatient stay, from their admission to discharge date. The health information in this dataset is not individually identifiable. This means the file does not contain personal health information.</p>
+<p>For this project, we will be working with a single dataset that includes New York state-wide hospital discharge data for a year (2016). Elective hip replacement surgery was the main reason for their hospital stay. The dataset is one single table with 30 columns Each row in the dataset represents a single inpatient stay, from their admission to discharge date. The health information in this dataset is not individually identifiable. This means the file does not contain personal health information.</p>
 <p><a href="data/hospital.csv" class="btn btn-secondary" role="button" download="" target="&quot;_blank"><i class="bi bi-download"></i> Download Dataset (.csv)</a></p>
 <p><a href="https://docs.google.com/spreadsheets/d/12obAfLNTPSGtM9gGsiTSWn2eRN5EnQH17WlG7qXCXtI/edit?usp=sharing" class="btn btn-outline-success" role="button" target="&quot;_blank">See Metadata</a></p>
 </section>
@@ -188,8 +229,69 @@ Analyzing Healthcare Data
 </section>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
-<p><strong>Data Transformation using Power Query</strong></p>
+<section id="data-cleaning-and-transformation-using-power-query" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-and-transformation-using-power-query">Data Cleaning and Transformation using Power Query</h3>
+<p><img src="images/healthstat-transform.png" class="img-fluid"></p>
+<p>The raw hospital records were preprocessed and filtered to isolate a specific high-impact surgical cohort:</p>
+<p><strong>Hospital Discharges Table (<code>hospital_discharges</code>)</strong>: * Promoted the first row to headers for proper schema structuring.</p>
+<ul>
+<li><p>Filtered dataset rows strictly for hip surgery procedures where <code>ccs_procedure_description = "HIP REPLACEMENT,TOT/PRT"</code> to maintain a focused clinical benchmark.</p></li>
+<li><p>Cast <code>length_of_stay</code> to Integer for accurate day-count aggregations.</p></li>
+<li><p>Transformed financial metrics (<code>total_charges</code> and <code>total_costs</code>) to Decimal data types using <code>Indonesian</code> locale formatting to prevent parsing errors.</p></li>
+</ul>
+</section>
+<section id="calculated-columns-and-table-summarization-using-dax" class="level3">
+<h3 class="anchored" data-anchor-id="calculated-columns-and-table-summarization-using-dax">Calculated Columns and Table Summarization using DAX</h3>
+<p>To segment patient demographics and categorize hospital surgical volumes, custom calculated columns and summarized tables were constructed:</p>
+<ul>
+<li><p><strong>Demographic Segmentation (<code>Age Band</code>)</strong>:</p>
+<p>Created a conditional calculated column on the <strong><code>hospital_discharges</code> table</strong> to group adult cohorts: <span class="math display">\[\text{Age Band} = \begin{cases} \text{"Age 50+"} &amp; \text{if } \text{age\_group} \in \{\text{"50 to 69"},\text{"70 or Older"}\} \\
+\text{"Age &lt;50"} &amp; \text{otherwise} \end{cases}\]</span></p></li>
+<li><p><strong>Surgical Program Volume Summary Table (<code>surgical_program_volume_summary</code>)</strong>:</p>
+<ul>
+<li><p>Generated a summary table aggregating facility workloads using <code>SUMMARIZECOLUMNS</code>: <span class="math display">\[
+\begin{aligned}
+\text{surgical\_program\_volume\_summary} = \; &amp; \text{SUMMARIZECOLUMNS}( \\
+&amp; \quad \text{hospital\_discharges[facility\_name]}, \\
+&amp; \quad \text{"Total Discharges"}, [\text{Total Discharges}], \\
+&amp; \quad \text{"Total Surgeons"}, [\text{Total Surgeons}] \\
+)
+\end{aligned}
+\]</span></p></li>
+<li><p>Established a <strong>bins grouping</strong> on <code>Total Discharges</code> with a bin size of <span class="math inline">\(200\)</span>.</p></li>
+<li><p>Added a calculated column <code>Surgical Program Size</code> using a <code>SWITCH</code> statement to classify hospital scales into operational tiers (<code>&lt;200</code>, <code>200-399</code>, <code>400-599</code>, <code>&gt;600</code>).</p></li>
+<li><p>Linked the summary table back to the primary <code>hospital_discharges</code> table via a many-to-one relationship on <code>facility_name</code>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="data-modeling">Data Modeling</h3>
 <p><img src="images/healthstat-model.png" class="img-fluid"></p>
+</section>
+<section id="key-measures-and-dynamic-metrics-using-dax" class="level3">
+<h3 class="anchored" data-anchor-id="key-measures-and-dynamic-metrics-using-dax">Key Measures and Dynamic Metrics using DAX</h3>
+<p>Analytical measures were established to evaluate throughput, length of stay (LOS), cost efficiency, and variance against overall system benchmarks:</p>
+<ul>
+<li><p><strong>Core Operational Metrics</strong>:</p>
+<ul>
+<li><p><span class="math inline">\(\text{Total Discharges} = \text{COUNT}(\text{discharge\_year})\)</span></p></li>
+<li><p><span class="math inline">\(\text{Total Hospitals} = \text{DISTINCTCOUNT}(\text{facility\_id})\)</span></p></li>
+<li><p><span class="math inline">\(\text{Total Surgeons} = \text{DISTINCTCOUNT}(\text{operating\_provider\_license\_number})\)</span></p></li>
+</ul></li>
+<li><p><strong>Length of Stay &amp; Cost Performance</strong>:</p>
+<ul>
+<li><p><span class="math inline">\(\text{Average LOS Days} = \text{AVERAGE}(\text{length\_of\_stay})\)</span></p></li>
+<li><p><span class="math inline">\(\text{Average Cost Per Discharge} = \frac{\sum\text{total\_costs}}{\text{Total Discharges}}\)</span></p></li>
+</ul></li>
+<li><p><strong>Benchmark Variance Measures (ALL Function Context)</strong>:</p>
+<ul>
+<li><p><span class="math inline">\(\text{Average LOS Days ALL} = \text{CALCULATE}([\text{Average LOS Days}], \text{ALL}())\)</span></p></li>
+<li><p><span class="math inline">\(\text{Average Cost Per Discharge ALL} = \text{CALCULATE}([\text{Average Cost Per Discharge}], \text{ALL}())\)</span></p></li>
+<li><p><span class="math inline">\(\% \text{ Var Average LOS Days} = \frac{[\text{Average LOS Days}] - [\text{Average LOS Days ALL}]}{[\text{Average LOS Days ALL}]}\)</span></p></li>
+<li><p><span class="math inline">\(\% \text{ Var Average Cost per Discharge} = \frac{[\text{Average Cost Per Discharge}] - [\text{Average Cost Per Discharge ALL}]}{[\text{Average Cost Per Discharge ALL}]}\)</span></p></li>
+</ul></li>
+</ul>
+</section>
 </section>
 <section id="dashboard" class="level2">
 <h2 class="anchored" data-anchor-id="dashboard">Dashboard</h2>
@@ -201,10 +303,82 @@ Analyzing Healthcare Data
 </div>
 <p><a href="dashboard/healthstat.pbix" class="btn btn-warning" role="button" download="" target="&quot;_blank"><i class="bi bi-download"></i> Download Dashboard (.pbix)</a></p>
 </section>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
+<section id="key-insights-and-recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="key-insights-and-recommendations">Key Insights and Recommendations</h2>
+<section id="a.-macro-operational-benchmarks" class="level3">
+<h3 class="anchored" data-anchor-id="a.-macro-operational-benchmarks">A. Macro Operational Benchmarks</h3>
+<p>Across the state-level dataset comprising <strong>151 hospitals</strong> and <strong>26,286 patient discharges</strong>:</p>
+<ul>
+<li><p><strong>Average LOS</strong>: <strong><span class="math inline">\(2.65\)</span> days</strong> per patient stay.</p></li>
+<li><p><strong>Average Cost per Discharge</strong>: <strong><span class="math inline">\(\$21\text{K}\)</span></strong> per patient.</p></li>
+<li><p><strong>Hospital Profile Benchmark (Case Study: University Hospital)</strong>:</p>
+<ul>
+<li><p>Demonstrates above-average efficiency with an <strong>Average LOS of <span class="math inline">\(2.56\)</span> days</strong> (below the <span class="math inline">\(2.65\)</span>-day benchmark).</p></li>
+<li><p>Maintains lower operational expenses at <strong><span class="math inline">\(\$17\text{K}\)</span> per discharge</strong> (compared to the <span class="math inline">\(\$21\text{K}\)</span> system average).</p></li>
+<li><p>Patient demographic skew: Primarily handles <strong>Moderate</strong> severity of illness and <strong>Minor</strong> risk of mortality cohorts.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="b.-key-drivers-of-extended-length-of-stay-los" class="level3">
+<h3 class="anchored" data-anchor-id="b.-key-drivers-of-extended-length-of-stay-los">B. Key Drivers of Extended Length of Stay (LOS)</h3>
+<p>Statistical Key Influencer analysis isolates the clinical and operational drivers that significantly expand patient LOS:</p>
+<ol type="1">
+<li><p><strong>Illness Severity (<code>apr_severity_of_illness</code>)</strong>:</p>
+<ul>
+<li>Patients classified under <strong>Extreme Severity</strong> increase average stay duration by <strong><span class="math inline">\(+8.96\)</span> days</strong>.</li>
+</ul></li>
+<li><p><strong>Mortality Risk (<code>apr_risk_of_mortality</code>)</strong>:</p>
+<ul>
+<li><p><strong>Extreme Risk</strong>: Increases LOS by <strong><span class="math inline">\(+6.09\)</span> days</strong>.</p></li>
+<li><p><strong>Major Risk</strong>: Increases LOS by <strong><span class="math inline">\(+2.48\)</span> days</strong>.</p></li>
+</ul></li>
+<li><p><strong>Post-Discharge Disposition Bottlenecks</strong>:</p>
+<ul>
+<li>Referrals to <strong>Skilled Nursing Homes</strong> extend LOS by <strong><span class="math inline">\(+1.29\)</span> days</strong>, signaling systemic delays in post-acute care placement and transfer coordination.</li>
+</ul></li>
+<li><p><strong>Geographic Impact</strong>:</p>
+<ul>
+<li>Facilities in the <strong>New York City</strong> service area experience an average LOS increase of <strong><span class="math inline">\(+1.68\)</span> days</strong> compared to other regions.</li>
+</ul></li>
+</ol>
+</section>
+<section id="c.-financial-impact-hospital-outliers-los-vs.-cost-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="c.-financial-impact-hospital-outliers-los-vs.-cost-correlation">C. Financial Impact &amp; Hospital Outliers (LOS vs.&nbsp;Cost Correlation)</h3>
+<p>Cross-evaluating LOS against financial outcomes reveals a strong positive correlation where prolonged stays exponentially escalate healthcare delivery costs.</p>
+<ul>
+<li><p><strong>Cost Drivers</strong>: Extreme severity adds an average of <strong><span class="math inline">\(+\$37.3\text{K}\)</span></strong> to total discharge cost, while extreme mortality risk adds <strong><span class="math inline">\(+\$24.25\text{K}\)</span></strong>. Also, NYC Region Facility location adds cost escalation <strong><span class="math inline">\(+\$15.04\text{K}\)</span></strong> per discharge.</p></li>
+<li><p><strong>Facility Outliers</strong>:</p>
+<ul>
+<li><p><strong>Highest Cost Centers</strong>: <em>NYU Lutheran Medical Center</em> (<span class="math inline">\(\$85\text{K}\)</span> avg cost), <em>Olean General Hospital</em> (<span class="math inline">\(\$81\text{K}\)</span>), and <em>Memorial Hospital for Cancer</em> (<span class="math inline">\(\$64\text{K}\)</span>).</p></li>
+<li><p><strong>Highest LOS Outliers</strong>: <em>Kings County Hospital Center</em> leads with an average LOS of <strong><span class="math inline">\(12\)</span> days</strong>, followed by <em>Interfaith Medical Center</em> and <em>Memorial Hospital for Cancer</em> (<strong><span class="math inline">\(9\)</span> days</strong>).</p></li>
+<li><p><strong>Top Efficiency Leader</strong>: <em>Northern Dutchess Hospital</em> achieves an industry-leading average LOS of just <strong><span class="math inline">\(1.4\)</span> days</strong>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="strategic-recommendations-for-hospital-operations" class="level3">
+<h3 class="anchored" data-anchor-id="strategic-recommendations-for-hospital-operations">Strategic Recommendations for Hospital Operations</h3>
+<p>To optimize bed turnover rate, lower per-patient operational expenses, and expand capacity, here are recommendations for targeted interventions:</p>
+<ol type="1">
+<li><strong>Early Discharge &amp; Post-Acute Care Coordination</strong>:
+<ul>
+<li>Address the <strong><span class="math inline">\(+1.29\)</span>-day delay</strong> associated with <em>Skilled Nursing Home</em> transfers by instituting <strong>Day-1 Discharge Planning</strong>. Pre-coordinating post-acute bed availability upon patient admission will minimize non-clinical administrative delays.</li>
+</ul></li>
+<li><strong>High-Severity Clinical Pathways</strong>:
+<ul>
+<li>Establish standardized multidisciplinary protocols specifically for <em>Extreme Severity</em> cohorts. Proactive daily case reviews can mitigate complication risks that drive severe cost overruns (<span class="math inline">\(+\$37.3\text{K}\)</span> per case).</li>
+</ul></li>
+<li><strong>Cross-Facility Operational Benchmarking</strong>:
+<ul>
+<li>Conduct operational audits at high-LOS facilities (e.g., <em>Kings County Hospital</em> at <span class="math inline">\(12\)</span> days) to adopt patient-flow practices from high-efficiency performers like <em>Northern Dutchess Hospital</em> (<span class="math inline">\(1.4\)</span> days).</li>
+</ul></li>
+<li><strong>System Capacity Expansion via Efficiency</strong>:
+<ul>
+<li>Reducing average system LOS toward a <span class="math inline">\(2.0\)</span>-day target across mid-tier hospitals releases existing bed capacity without expanding physical infrastructure, enabling facilities to accommodate higher surgical patient throughput.</li>
+</ul></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

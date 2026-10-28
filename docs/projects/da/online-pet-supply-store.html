@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -107,14 +136,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
   <li><a href="#tools-technologies" id="toc-tools-technologies" class="nav-link" data-scroll-target="#tools-technologies">Tools &amp; Technologies</a></li>
   </ul></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning-and-transformation-using-power-query" id="toc-data-cleaning-and-transformation-using-power-query" class="nav-link" data-scroll-target="#data-cleaning-and-transformation-using-power-query">Data Cleaning and Transformation using Power Query</a></li>
+  <li><a href="#data-modeling" id="toc-data-modeling" class="nav-link" data-scroll-target="#data-modeling">Data Modeling</a></li>
+  <li><a href="#key-measures-and-what-if-simulation-logic" id="toc-key-measures-and-what-if-simulation-logic" class="nav-link" data-scroll-target="#key-measures-and-what-if-simulation-logic">Key Measures and What-If Simulation Logic</a></li>
+  </ul></li>
   <li><a href="#dashboard" id="toc-dashboard" class="nav-link" data-scroll-target="#dashboard">Dashboard</a></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a>
+  <li><a href="#key-insights-and-recommendations" id="toc-key-insights-and-recommendations" class="nav-link" data-scroll-target="#key-insights-and-recommendations">Key Insights and Recommendations</a>
   <ul class="collapse">
   <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link" data-scroll-target="#executive-summary">Executive Summary</a></li>
   <li><a href="#goal-1-increase-sales" id="toc-goal-1-increase-sales" class="nav-link" data-scroll-target="#goal-1-increase-sales">Goal 1: Increase Sales</a></li>
-  </ul></li>
   <li><a href="#goal-2-shipping-cost-reductions" id="toc-goal-2-shipping-cost-reductions" class="nav-link" data-scroll-target="#goal-2-shipping-cost-reductions">Goal 2: Shipping Cost Reductions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -197,8 +231,90 @@ Online Pet Supply Store Analysis
 </section>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
-<p><strong>Data Transformation using Power Query</strong></p>
+<section id="data-cleaning-and-transformation-using-power-query" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-and-transformation-using-power-query">Data Cleaning and Transformation using Power Query</h3>
+<p><img src="images/olpetsupplystore-transform.png" class="img-fluid"></p>
+<p>Data cleaning and transformation were applied across multiple transactional and lookup tables to standardize types and fix locale formatting issues:</p>
+<ul>
+<li><p><strong>Sales Table</strong>:</p>
+<ul>
+<li><p>Promoted first row to headers and filtered out invalid transactions (<code>Invoice No</code> is not null).</p></li>
+<li><p>Adjusted <code>Transaction Date</code> to <code>Date</code> using <code>English (US)</code> locale to resolve date parsing errors.</p></li>
+<li><p>Standardized <code>Sales</code> and <code>Unit Price</code> to <code>Decimal</code> using <code>Indonesian</code> locale to accurately capture fractional values.</p></li>
+<li><p>Standardized product naming consistency (e.g., replaced <code>"indoor pet camera (wi-fi)"</code> with <code>"indoor pet camera"</code>).</p></li>
+</ul></li>
+<li><p><strong>Customers &amp; Products Tables</strong>:</p>
+<ul>
+<li><p>Promoted headers and cast operational IDs (<code>Customer ID</code>) to Integer.</p></li>
+<li><p>Transformed numeric metrics (<code>Latitude</code>, <code>Longitude</code>, <code>Weight</code>, <code>Landed Cost</code>, <code>Shipping_Cost_1000_mile</code>) to <code>Decimal</code> with proper local parsing.</p></li>
+</ul></li>
+<li><p><strong>State Mapping</strong>: Cleaned and promoted headers for spatial analysis.</p></li>
+<li><p><strong>Invoice Totals Table (Aggregated Table)</strong>:</p>
+<ul>
+<li><p>Duplicated the <code>Sales</code> table to form an aggregated table grouped by <code>Invoice No</code>.</p></li>
+<li><p>Computed invoice-level aggregations: <code>SUM(Quantity)</code> and <code>SUM(Sales)</code>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="data-modeling">Data Modeling</h3>
+<p>A <strong>Star Schema</strong> architecture was established to maintain high DAX query performance and support Market Basket Analysis:</p>
+<ul>
+<li><p><strong>Primary Relationships</strong>: Star schema connecting <code>Sales</code> (Fact) to <code>Customers</code>, <code>Products</code>, and <code>State Mapping</code> (Dimensions).</p></li>
+<li><p><strong>Market Basket Analysis Table</strong>: Created a duplicated table <code>Market Basket = Sales</code> connected to the main <code>Sales</code> table via <code>Invoice No</code> (Many-to-Many / Single-direction filtering) to analyze cross-selling product co-occurrences within the same checkout.</p></li>
+</ul>
 <p><img src="images/olpetsupplystore-model.png" class="img-fluid"></p>
+</section>
+<section id="key-measures-and-what-if-simulation-logic" class="level3">
+<h3 class="anchored" data-anchor-id="key-measures-and-what-if-simulation-logic">Key Measures and What-If Simulation Logic</h3>
+<p>Instead of static calculations, dynamic DAX measures and What-If parameters were implemented to evaluate business goals (Sales Growth &amp; Shipping Efficiency).</p>
+<section id="a.-core-business-metrics" class="level4">
+<h4 class="anchored" data-anchor-id="a.-core-business-metrics">A. Core Business Metrics</h4>
+<ul>
+<li><p><strong>Customer Lifetime Value (LTV)</strong>: Evaluates average revenue contribution per customer. <span class="math display">\[\text{Customer LTV (Avg)} = \frac{\sum\text{Sales}}{\text{Number of Unique Customers}}\]</span></p></li>
+<li><p><strong>Profit Baseline %</strong>: Measures baseline margin before operational optimization. <span class="math display">\[\text{Profit \%} = \frac{\sum\text{Profit (Baseline)}}{\sum\text{Sales}}\]</span></p></li>
+</ul>
+</section>
+<section id="b.-dynamic-shipping-cost-and-what-if-simulation-logic" class="level4">
+<h4 class="anchored" data-anchor-id="b.-dynamic-shipping-cost-and-what-if-simulation-logic">B. Dynamic Shipping Cost and What-If Simulation Logic</h4>
+<p>To quantify potential cost savings from bulk shipment consolidation, a <strong>What-If Parameter</strong> (<code>What-if quantity</code>: range 1 to 20) was introduced.</p>
+<p>The baseline shipping model charges 100% shipping cost for the first item and applies a fixed 30% discount (0.7 factor) for additional items. The What-If scenario dynamically replaces this factor using tiered volume discounts:</p>
+<p><span class="math display">\[\text{Blended Shipping Cost Factor} =
+\begin{cases}
+1.0 &amp; \text{if } Q \le 1 \\
+0.8 &amp; \text{if } Q \le 2 \\
+0.6 &amp; \text{if } Q \le 4 \\
+0.5 &amp; \text{if } Q \le 7 \\
+0.4 &amp; \text{if } Q \le 9 \\
+0.3 &amp; \text{if } Q &gt; 9
+\end{cases}\]</span></p>
+<p><strong>Key DAX Formulation Highlight:</strong></p>
+<pre class="dax"><code>// Baseline Shipping Cost (Fixed 70% cost for additional units)
+Shipping (Baseline) = 
+SUMX(
+    Sales, 
+    IF(
+        Sales[Quantity] = 1, 
+        Sales[Shipping Cost], 
+        Sales[Shipping Cost] + ((Sales[Quantity] - 1) * (Sales[Shipping Cost] * 0.7))
+    )
+)
+
+// What-If Shipping Cost (Dynamic factor based on order volume)
+Shipping (What-if) = 
+SUMX(
+    Sales, 
+    IF(
+        Sales[Quantity] = 1, 
+        Sales[Shipping Cost], 
+        Sales[Shipping Cost] + ((Sales[Quantity] - 1) * (Sales[Shipping Cost] * 'What-if quantity'[Blended Shipping Cost Factor]))
+    )
+)
+
+// Total Operational Cost Savings
+Shipping (Difference) = [Shipping (Baseline)] - [Shipping (What-if)]</code></pre>
+</section>
+</section>
 </section>
 <section id="dashboard" class="level2">
 <h2 class="anchored" data-anchor-id="dashboard">Dashboard</h2>
@@ -210,37 +326,55 @@ Online Pet Supply Store Analysis
 </div>
 <p><a href="dashboard/ecommerce-analysis.pbix" class="btn btn-warning" role="button" download="" target="&quot;_blank">Download Dashboard (.pbix)</a></p>
 </section>
-<section id="key-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
+<section id="key-insights-and-recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="key-insights-and-recommendations">Key Insights and Recommendations</h2>
 <section id="executive-summary" class="level3">
 <h3 class="anchored" data-anchor-id="executive-summary">Executive Summary</h3>
 <ul>
-<li>Test</li>
+<li><p>Key Financial Performance: Total sales reached $1.55M with a baseline profit of $427,336 (profit margin of 27.50%).</p></li>
+<li><p>Most Profitable Categories: The Electronics (44.28%) and Grooming (35.29%) categories generate the highest profit margins, while Pet Food (20.64%) and Food (22.67%) have lower profit margins.</p></li>
+<li><p>Operational Challenges: Total shipping costs are quite high, at $385,15K, or approximately 24.8% of total revenue. This significantly erodes the profit margin.</p></li>
 </ul>
+<p>Moreover, based on the Power BI dashboard analysis, strategic insights were derived to address Whiskique’s 2 core business goals: <strong>increase salses</strong> through targeted cross-selling and upselling strategy and <strong>shipping cost reductions</strong> via logistics optimization.</p>
 </section>
 <section id="goal-1-increase-sales" class="level3">
 <h3 class="anchored" data-anchor-id="goal-1-increase-sales">Goal 1: Increase Sales</h3>
-<section id="market-basket-analysis-cross-selling-opportunity" class="level4">
-<h4 class="anchored" data-anchor-id="market-basket-analysis-cross-selling-opportunity">Market Basket Analysis &amp; Cross-Selling Opportunity</h4>
+<p>Market Basket Analysis on co-occurrence patterns across transaction checkouts revealed clear product associations:</p>
 <ul>
-<li>Test</li>
-</ul>
-</section>
-<section id="upselling-strategy" class="level4">
-<h4 class="anchored" data-anchor-id="upselling-strategy">Upselling Strategy</h4>
+<li><p><strong>Primary Anchor Product</strong>: <em>Memory Foam Pet Beds</em> serves as the strongest catalyst for cross-category purchases.</p></li>
+<li><p><strong>Top Basket Pairings</strong>: Customers buying pet beds frequently add high-volume consumables to the same invoice:</p>
 <ul>
-<li>Test</li>
+<li><p><strong>Pet Food</strong>: <em>Purina ONE SmartBlend</em> (487 co-purchases) and <em>Taste of the Wild</em> (404 co-purchases).</p></li>
+<li><p><strong>Hygiene Essentials</strong>: <em>Dog &amp; Puppy Pads</em> (396 co-purchases) and <em>Earth Rated Dog Poop Bags</em> (331 co-purchases).</p></li>
+</ul></li>
+<li><p><strong>High-Margin Attach Opportunities</strong>: Products in <strong>Electronics</strong> (e.g., <em>Indoor Pet Camera</em>) and <strong>Grooming</strong> (e.g., <em>ChomChom Pet Hair Remover</em>) yield top-tier profit margins (<span class="math inline">\(44.28\%\)</span> and <span class="math inline">\(35.29\%\)</span>, respectively), despite lower overall sales volume.</p></li>
 </ul>
+<section id="strategic-recommendations" class="level4">
+<h4 class="anchored" data-anchor-id="strategic-recommendations">Strategic Recommendations</h4>
+<ol type="1">
+<li><p><strong>Checkout Bundling (“Starter Kits”)</strong>: Implement automated checkout prompts offering a <span class="math inline">\(5\text{--}10\%\)</span> bundle discount on <em>Pet Bed + Puppy Pads + Poop Bags</em>.</p></li>
+<li><p><strong>Margin-Driven Upselling</strong>: Trigger smart recommendations for high-margin accessories (<em>Indoor Pet Camera</em> or <em>ChomChom Pet Hair Remover</em>) whenever a customer adds routine pet food to their cart.</p></li>
+</ol>
 </section>
 </section>
-</section>
-<section id="goal-2-shipping-cost-reductions" class="level2">
-<h2 class="anchored" data-anchor-id="goal-2-shipping-cost-reductions">Goal 2: Shipping Cost Reductions</h2>
+<section id="goal-2-shipping-cost-reductions" class="level3">
+<h3 class="anchored" data-anchor-id="goal-2-shipping-cost-reductions">Goal 2: Shipping Cost Reductions</h3>
+<p>Baseline logistics expenses totaled <strong><span class="math inline">\(\$385.15\text{K}\)</span></strong>, representing approximately <strong><span class="math inline">\(24.8\%\)</span> of total gross sales</strong> (<span class="math inline">\(\$1.55\text{M}\)</span>).</p>
 <ul>
-<li>Tes</li>
+<li><p><strong>What-If Simulation Impact</strong>: By shifting average unit order quantities toward bulk purchases (simulated at <span class="math inline">\(Q = 11\)</span>, reducing the blended shipping factor to <span class="math inline">\(0.30\)</span>), total shipping expenses drop to <strong><span class="math inline">\(\$266.96\text{K}\)</span></strong>.</p></li>
+<li><p><strong>Net Profit Realization</strong>: Operational cost reduction yields an immediate <strong><span class="math inline">\(\$118.19\text{K}\)</span> in bottom-line savings</strong> (~<span class="math inline">\(30.6\%\)</span> reduction in logisitics costs).</p></li>
+<li><p><strong>Category Volume Disparities</strong>: <em>Pet Food</em> leads in average shipped quantity per transaction (<span class="math inline">\(5.31\)</span> units), whereas <em>Electronics</em> (<span class="math inline">\(1.38\)</span> units) and <em>Supplements</em> (<span class="math inline">\(2.36\)</span> units) suffer from fragmented single-unit shipments.</p></li>
 </ul>
+<section id="strategic-recommendations-1" class="level4">
+<h4 class="anchored" data-anchor-id="strategic-recommendations-1">Strategic Recommendations</h4>
+<ol type="1">
+<li><p><strong>Tiered Free-Shipping Thresholds</strong>: Replace flat-rate shipping with volume-based incentives (e.g., <em>“Order 3+ items to qualify for free shipping”</em>), incentivizing multi-item cart consolidation.</p></li>
+<li><p><strong>“Subscribe &amp; Save” Program</strong>: Introduce recurring bulk subscriptions for high-frequency categories (<em>Pet Food</em> &amp; <em>Supplies</em>) to enable batch shipping fulfillment from regional centers (e.g., Texas and Central regional hubs).</p></li>
+</ol>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
