@@ -7,7 +7,7 @@ image: images/online-pet-supply-store.jpg
 ---
 
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item"><a href="../../index.qmd">Home</a></li>
   <li class="breadcrumb-item"><a href="../da/index.qmd">Data Analytics Projects</a></li>
   <li class="breadcrumb-item active">Online Pet Supply Store Analysis</li>
 </ol>

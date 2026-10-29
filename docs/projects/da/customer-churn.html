@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -102,8 +131,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#tools-technologies" id="toc-tools-technologies" class="nav-link" data-scroll-target="#tools-technologies">Tools &amp; Technologies</a></li>
+  </ul></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#pivot-table-architecture-and-aggregations" id="toc-pivot-table-architecture-and-aggregations" class="nav-link" data-scroll-target="#pivot-table-architecture-and-aggregations">Pivot Table Architecture and Aggregations</a></li>
+  </ul></li>
   <li><a href="#dashboard" id="toc-dashboard" class="nav-link" data-scroll-target="#dashboard">Dashboard</a></li>
+  <li><a href="#key-insights-and-recommendations" id="toc-key-insights-and-recommendations" class="nav-link" data-scroll-target="#key-insights-and-recommendations">Key Insights and Recommendations</a>
+  <ul class="collapse">
+  <li><a href="#key-insights-from-dashboard-visualizations" id="toc-key-insights-from-dashboard-visualizations" class="nav-link" data-scroll-target="#key-insights-from-dashboard-visualizations">Key Insights from Dashboard Visualizations</a></li>
+  <li><a href="#strategic-recommendations" id="toc-strategic-recommendations" class="nav-link" data-scroll-target="#strategic-recommendations">Strategic Recommendations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -142,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
 
 <ol class="breadcrumb">
 <li class="breadcrumb-item">
-<a href="../../home.html">Home</a>
+<a href="../../index.html">Home</a>
 </li>
 <li class="breadcrumb-item">
 <a href="../../projects/da/index.html">Data Analytics Projects</a>
@@ -153,14 +195,109 @@ Customer Churn
 </ol>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This project uses a fictitious churn dataset from a Telecom provider called Databel. The task is to analyze why customers are churning, or in other words, leaving Databel.</p>
+<p>The churn rate, also known as the rate of attrition or customer churn, is the rate at which customers stop doing business with an entity.</p>
+<p>We can compare churn with the leaky bucket problem. We can fill the bucket with more water (or new customers in this case), but the overall revenue won’t increase if existing customers are leaving your company. It’s easier to retain customers than to attract new customers, so for many companies it’s a priority to reduce churn.</p>
+<p>There are multiple methods to calculate churn, and depending on the industry, it might make sense for a company to slightly alter the formula. A traditional e-commerce platform might consider a certain customer a churner if he or she hasn’t made a purchase in the last 12 months. The simplified formula for churn is to divide customers’ lost by the total number of customers. If we have a total of 100 customers in a certain period, and 10 end up leaving, we have a churn rate of 10%.</p>
+<section id="dataset" class="level3">
+<h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
+<p>The Databel dataset consists of 29 different columns and has one row per customer.</p>
+<p>The dataset contains numerous dimensions, the first one being Customer_id. The Customer_id is a unique ID that identifies an individual customer. The second column is called Churn Label, and it indicates if a customer churned with “Yes” or “No”.</p>
+<p>The dataset contains various other dimensions, such as demographic fields and information about premium plans. The description of the other columns can all be found in the metadata sheet.</p>
+<p><a href="data/churn.xlsx" class="btn btn-secondary" role="button" download="" target="&quot;_blank"><i class="bi bi-download"></i> Download Datasets (.xlsx)</a></p>
+<p><a href="https://docs.google.com/spreadsheets/d/1QCJweaF0PqFXCJJNeycEs0usRiBz22DuKF8xGKD9DQU/edit?usp=sharing" class="btn btn-outline-success" role="button" target="&quot;_blank">See Metadata</a></p>
+</section>
+<section id="tools-technologies" class="level3">
+<h3 class="anchored" data-anchor-id="tools-technologies">Tools &amp; Technologies</h3>
+<ul>
+<li><p>Microsoft Excel</p></li>
+<li><p>Pivot Table</p></li>
+<li><p>Pivot Chart</p></li>
+</ul>
+</section>
+</section>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<ul>
+<li><p><strong><code>Aggregate</code> Table</strong>: Navigated to the raw aggregate sheet and converted the data range (<span class="math inline">\(A1:U6670\)</span>) into an official Excel Table format, establishing a clean tabular schema for usage metrics and behavioral records.</p></li>
+<li><p><strong><code>Customers</code> Table</strong>: Tabulated the subscriber-level dataset ranging from <span class="math inline">\(A1:AC6688\)</span>, renaming the range to <code>Customers</code> to serve as the primary dimension table.</p></li>
+<li><p><strong>Data Integrity Check</strong>: Conducted a duplicate audit on the <code>Customers</code> table to identify and verify unique subscriber records, ensuring each row corresponds strictly to a distinct <code>Customer_id</code>.</p></li>
+</ul>
+<p>Then, to facilitate granular segmentation and numerical aggregation in Pivot Tables, custom calculated columns were engineered using Excel logical formulas:</p>
+<ul>
+<li><p><strong>Numerical Churn Flag (<code>Churned</code>)</strong>: Added a binary indicator column in the <code>Customers</code> table to convert qualitative text labels into quantifiable metrics for rate calculations:</p>
+<pre class="excel"><code>=IF([@[Churn Label]]="Yes"; 1; 0)</code></pre></li>
+<li><p><strong>Demographic Segmentation (<code>Demographics</code>)</strong>: Created a conditional nested formula in the <code>Aggregate</code> table to categorize subscribers into distinct age cohorts for behavioral analysis:</p>
+<pre class="excel"><code>=IF([@[Under 30]]="Yes"; "Under 30"; IF([@Senior]="Yes"; "Senior"; "Other"))</code></pre></li>
+<li><p><strong>Consumption Tier Grouping (<code>Grouped Consumption</code>)</strong>: Segmented monthly data download volumes into structured tiers in the <code>Aggregate</code> table to analyze how heavy vs.&nbsp;light data usage correlates with customer churn:</p>
+<pre class="excel"><code>=IF([@[Avg Monthly GB Download]]&lt;5; "Less than 5GB"; IF([@[Avg Monthly GB Download]]&lt;10; "Between 5 and 10GB"; "10 or more GB"))</code></pre></li>
+</ul>
+<section id="pivot-table-architecture-and-aggregations" class="level3">
+<h3 class="anchored" data-anchor-id="pivot-table-architecture-and-aggregations">Pivot Table Architecture and Aggregations</h3>
+<ul>
+<li><p><strong>KPI Summary Table</strong>: Calculated total subscribers (<code>6,687</code>), total churned customers (<code>1,796</code>), and the overall system churn rate (<code>26.86%</code>).</p></li>
+<li><p><strong>Churn Reasons Distribution Table</strong>: Aggregated frequency counts of specific churn categories to rank root causes.</p></li>
+<li><p><strong>Competitor Churn Analysis Table</strong>: Grouped churned customers by competitor-related motivation fields to evaluate market competition factors.</p></li>
+<li><p><strong>Demographic &amp; Age Group Pivot Tables</strong>: Cross-tabulated customer segments (Under 30, Senior, Other) and age brackets (e.g., 19-28 through 79-88) against churn status.</p></li>
+<li><p><strong>Consumption &amp; Regional (State) Pivot Tables</strong>:</p>
+<ul>
+<li><p>Grouped data by data consumption volume tiers (e.g., <span class="math inline">\(&lt;5\text{ GB}\)</span>, <span class="math inline">\(5\text{--}10\text{ GB}\)</span>, <span class="math inline">\(\ge 10\text{ GB}\)</span>).</p></li>
+<li><p>Built a geographical ranking table sorted by state and filtered by international plan status (<code>Intl Plan = yes</code>), incorporating conditional formatting (Data Bars/Color Scales) to highlight high-risk states like California (CA at <span class="math inline">\(75.00\%\)</span>) and Indiana (IN at <span class="math inline">\(66.67\%\)</span>).</p></li>
+</ul></li>
+</ul>
+</section>
 </section>
 <section id="dashboard" class="level2">
 <h2 class="anchored" data-anchor-id="dashboard">Dashboard</h2>
 <p>(The loading usually takes quite a long time.)</p>
 <iframe width="1000" height="664" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/ce411b21bd83815f/IQRpZmQz2D_0SZNPhYtXi_48AXUgTmhJAKAGnuUzGNGA8ns?em=2&amp;wdAllowInteractivity=True&amp;Item=dashboard&amp;wdHideGridlines=True&amp;wdDownloadButton=True&amp;wdInConfigurator=True&amp;wdInConfigurator=True">
 </iframe>
+</section>
+<section id="key-insights-and-recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="key-insights-and-recommendations">Key Insights and Recommendations</h2>
+<section id="key-insights-from-dashboard-visualizations" class="level3">
+<h3 class="anchored" data-anchor-id="key-insights-from-dashboard-visualizations">Key Insights from Dashboard Visualizations</h3>
+<p>The Databel dashboard analysis highlights a critical system-wide <strong>Churn Rate of <span class="math inline">\(26.86\%\)</span></strong> (<span class="math inline">\(1,796\)</span> churned out of <span class="math inline">\(6,687\)</span> total customers).</p>
+<ul>
+<li><p><strong>Dominant Churn Drivers (Competitor Disruption)</strong>:</p>
+<ul>
+<li><p>The primary reasons for leaving heavily lean toward competitor acquisition strategies. The top churn factors are <strong>“Competitor made better offer”</strong> and <strong>“Competitor had better devices”</strong>.</p></li>
+<li><p>Looking closer at the Competitor Analysis breakdown, external offers and better competitor devices account for the majority of switched customers (<span class="math inline">\(37\%\)</span> and <span class="math inline">\(37\%\)</span> share in the donut chart).</p></li>
+</ul></li>
+<li><p><strong>Age &amp; Demographic Vulnerabilities</strong>:</p>
+<ul>
+<li><p><strong>Age Group Trend</strong>: Churn rate surges dramatically among older demographics. While younger brackets (19–58) maintain a steady baseline churn (~<span class="math inline">\(20\text{--}25\%\)</span>), the churn rate climbs sharply for older groups, peaking at <strong>over <span class="math inline">\(40\%\)</span> for ages 69–88</strong> (visible via the line-bar overlay chart).</p></li>
+<li><p><strong>Demographic Mix</strong>: The demographic donut chart shows that “Under 30” and “Senior” segments represent significant portions of the churned volume.</p></li>
+</ul></li>
+<li><p><strong>Data Consumption &amp; Plan Behavior</strong>:</p>
+<ul>
+<li>Customers consuming moderate-to-high data (<span class="math inline">\(5\text{--}10\text{ GB}\)</span> or <span class="math inline">\(\ge 10\text{ GB}\)</span>) show notable churn volumes, indicating that heavy users may feel constrained or overpriced compared to market alternatives.</li>
+</ul></li>
+<li><p><strong>Regional &amp; International Plan Risk Hotspots</strong>:</p>
+<ul>
+<li>When filtering by international plan (<code>Intl Plan = yes</code>), specific states exhibit extreme churn rates. <strong>California (CA)</strong> spikes at a staggering <strong><span class="math inline">\(75.00\%\)</span> churn rate</strong>, followed by <strong>Indiana (IN) at <span class="math inline">\(66.67\%\)</span></strong> and <strong>New Hampshire (NH) at <span class="math inline">\(62.50\%\)</span></strong>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="strategic-recommendations" class="level3">
+<h3 class="anchored" data-anchor-id="strategic-recommendations">Strategic Recommendations</h3>
+<ol type="1">
+<li><p><strong>Competitive Retention &amp; Device Financing Programs</strong>:</p>
+<ul>
+<li>Since competitor offers and devices drive the bulk of churn, introduce proactive retention triggers. Offer competitive device trade-in upgrades or loyalty discounts to long-term subscribers before they receive competitor offers.</li>
+</ul></li>
+<li><p><strong>Targeted Senior Engagement &amp; Support</strong>:</p>
+<ul>
+<li>Given the steep churn spike in senior cohorts (ages 69–88 reaching &gt;40% churn), audit customer service interactions for this demographic. Simplify billing interfaces, offer specialized tech-support assistance, and design senior-friendly simplified mobile plans.</li>
+</ul></li>
+<li><p><strong>Geographic Intervention for International Plan Users</strong>:</p>
+<ul>
+<li>Investigate regional network performance and pricing in high-risk states like California and Indiana for international plan holders. Deploy localized promotional retention bundles in these specific states to curb the 60–75% churn bleed.</li>
+</ul></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

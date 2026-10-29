@@ -7,7 +7,7 @@ image: images/healthy-spiders.jpg
 ---
 
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item"><a href="../../index.qmd">Home</a></li>
   <li class="breadcrumb-item"><a href="../auto/index.qmd">Automation Projects</a></li>
   <li class="breadcrumb-item active">Healthy Spiders</li>
 </ol>

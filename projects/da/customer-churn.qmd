@@ -7,15 +7,127 @@ image: images/customer-churn.jpg
 ---
 
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item"><a href="../../index.qmd">Home</a></li>
   <li class="breadcrumb-item"><a href="../da/index.qmd">Data Analytics Projects</a></li>
   <li class="breadcrumb-item active">Customer Churn</li>
 </ol>
 
 ## Overview
 
+This project uses a fictitious churn dataset from a Telecom provider called Databel. The task is to analyze why customers are churning, or in other words, leaving Databel.
+
+The churn rate, also known as the rate of attrition or customer churn, is the rate at which customers stop doing business with an entity.
+
+We can compare churn with the leaky bucket problem. We can fill the bucket with more water (or new customers in this case), but the overall revenue won't increase if existing customers are leaving your company. It's easier to retain customers than to attract new customers, so for many companies it's a priority to reduce churn.
+
+There are multiple methods to calculate churn, and depending on the industry, it might make sense for a company to slightly alter the formula. A traditional e-commerce platform might consider a certain customer a churner if he or she hasn't made a purchase in the last 12 months. The simplified formula for churn is to divide customers' lost by the total number of customers. If we have a total of 100 customers in a certain period, and 10 end up leaving, we have a churn rate of 10%.
+
+### Dataset
+
+The Databel dataset consists of 29 different columns and has one row per customer.
+
+The dataset contains numerous dimensions, the first one being Customer_id. The Customer_id is a unique ID that identifies an individual customer. The second column is called Churn Label, and it indicates if a customer churned with "Yes" or "No". 
+
+The dataset contains various other dimensions, such as demographic fields and information about premium plans. The description of the other columns can all be found in the metadata sheet.
+
+[<i class="bi bi-download"></i> Download Datasets (.xlsx)](data/churn.xlsx){.btn .btn-secondary role="button" download="" target="_blank}
+
+[See Metadata](https://docs.google.com/spreadsheets/d/1QCJweaF0PqFXCJJNeycEs0usRiBz22DuKF8xGKD9DQU/edit?usp=sharing){.btn .btn-outline-success role="button" target="_blank}
+
+### Tools & Technologies
+
+- Microsoft Excel
+
+- Pivot Table
+
+- Pivot Chart
+
+## Data Preparation
+
+* **`Aggregate` Table**: Navigated to the raw aggregate sheet and converted the data range ($A1:U6670$) into an official Excel Table format, establishing a clean tabular schema for usage metrics and behavioral records.
+
+* **`Customers` Table**: Tabulated the subscriber-level dataset ranging from $A1:AC6688$, renaming the range to `Customers` to serve as the primary dimension table.
+
+* **Data Integrity Check**: Conducted a duplicate audit on the `Customers` table to identify and verify unique subscriber records, ensuring each row corresponds strictly to a distinct `Customer_id`.
+
+Then, to facilitate granular segmentation and numerical aggregation in Pivot Tables, custom calculated columns were engineered using Excel logical formulas:
+
+* **Numerical Churn Flag (`Churned`)**:
+  Added a binary indicator column in the `Customers` table to convert qualitative text labels into quantifiable metrics for rate calculations:
+  ```excel
+  =IF([@[Churn Label]]="Yes"; 1; 0)
+  ```
+
+* **Demographic Segmentation (`Demographics`)**:
+  Created a conditional nested formula in the `Aggregate` table to categorize subscribers into distinct age cohorts for behavioral analysis:
+  ```excel
+  =IF([@[Under 30]]="Yes"; "Under 30"; IF([@Senior]="Yes"; "Senior"; "Other"))
+  ```
+
+* **Consumption Tier Grouping (`Grouped Consumption`)**:
+  Segmented monthly data download volumes into structured tiers in the `Aggregate` table to analyze how heavy vs. light data usage correlates with customer churn:
+  ```excel
+  =IF([@[Avg Monthly GB Download]]<5; "Less than 5GB"; IF([@[Avg Monthly GB Download]]<10; "Between 5 and 10GB"; "10 or more GB"))
+  ```
+
+### Pivot Table Architecture and Aggregations
+
+* **KPI Summary Table**: Calculated total subscribers (`6,687`), total churned customers (`1,796`), and the overall system churn rate (`26.86%`).
+
+* **Churn Reasons Distribution Table**: Aggregated frequency counts of specific churn categories to rank root causes.
+
+* **Competitor Churn Analysis Table**: Grouped churned customers by competitor-related motivation fields to evaluate market competition factors.
+
+* **Demographic & Age Group Pivot Tables**: Cross-tabulated customer segments (Under 30, Senior, Other) and age brackets (e.g., 19-28 through 79-88) against churn status.
+
+* **Consumption & Regional (State) Pivot Tables**: 
+
+  * Grouped data by data consumption volume tiers (e.g., $<5\text{ GB}$, $5\text{--}10\text{ GB}$, $\ge 10\text{ GB}$).
+
+  * Built a geographical ranking table sorted by state and filtered by international plan status (`Intl Plan = yes`), incorporating conditional formatting (Data Bars/Color Scales) to highlight high-risk states like California (CA at $75.00\%$) and Indiana (IN at $66.67\%$).
+
 ## Dashboard
 
 (The loading usually takes quite a long time.)
 
 <iframe width="1000" height="664" frameborder="0" scrolling="no" src="https://1drv.ms/x/c/ce411b21bd83815f/IQRpZmQz2D_0SZNPhYtXi_48AXUgTmhJAKAGnuUzGNGA8ns?em=2&wdAllowInteractivity=True&Item=dashboard&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
+
+## Key Insights and Recommendations
+
+### Key Insights from Dashboard Visualizations
+
+The Databel dashboard analysis highlights a critical system-wide **Churn Rate of $26.86\%$** ($1,796$ churned out of $6,687$ total customers).
+
+* **Dominant Churn Drivers (Competitor Disruption)**:
+
+  * The primary reasons for leaving heavily lean toward competitor acquisition strategies. The top churn factors are **"Competitor made better offer"** and **"Competitor had better devices"**.
+
+  * Looking closer at the Competitor Analysis breakdown, external offers and better competitor devices account for the majority of switched customers ($37\%$ and $37\%$ share in the donut chart).
+
+* **Age & Demographic Vulnerabilities**:
+
+  * **Age Group Trend**: Churn rate surges dramatically among older demographics. While younger brackets (19–58) maintain a steady baseline churn (~$20\text{--}25\%$), the churn rate climbs sharply for older groups, peaking at **over $40\%$ for ages 69–88** (visible via the line-bar overlay chart).
+
+  * **Demographic Mix**: The demographic donut chart shows that "Under 30" and "Senior" segments represent significant portions of the churned volume.
+
+* **Data Consumption & Plan Behavior**:
+
+  * Customers consuming moderate-to-high data ($5\text{--}10\text{ GB}$ or $\ge 10\text{ GB}$) show notable churn volumes, indicating that heavy users may feel constrained or overpriced compared to market alternatives.
+
+* **Regional & International Plan Risk Hotspots**:
+
+  * When filtering by international plan (`Intl Plan = yes`), specific states exhibit extreme churn rates. **California (CA)** spikes at a staggering **$75.00\%$ churn rate**, followed by **Indiana (IN) at $66.67\%$** and **New Hampshire (NH) at $62.50\%$**.
+
+### Strategic Recommendations
+
+1. **Competitive Retention & Device Financing Programs**:
+
+   * Since competitor offers and devices drive the bulk of churn, introduce proactive retention triggers. Offer competitive device trade-in upgrades or loyalty discounts to long-term subscribers before they receive competitor offers.
+   
+2. **Targeted Senior Engagement & Support**:
+
+   * Given the steep churn spike in senior cohorts (ages 69–88 reaching >40% churn), audit customer service interactions for this demographic. Simplify billing interfaces, offer specialized tech-support assistance, and design senior-friendly simplified mobile plans.
+
+3. **Geographic Intervention for International Plan Users**:
+
+   * Investigate regional network performance and pricing in high-risk states like California and Indiana for international plan holders. Deploy localized promotional retention bundles in these specific states to curb the 60–75% churn bleed.

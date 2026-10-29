@@ -7,7 +7,7 @@ image: images/healthstat.jpg
 ---
 
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="../../home.qmd">Home</a></li>
+  <li class="breadcrumb-item"><a href="../../index.qmd">Home</a></li>
   <li class="breadcrumb-item"><a href="../da/index.qmd">Data Analytics Projects</a></li>
   <li class="breadcrumb-item active">Analyzing Healthcare Data</li>
 </ol>
@@ -188,7 +188,7 @@ Cross-evaluating LOS against financial outcomes reveals a strong positive correl
 
   * **Top Efficiency Leader**: *Northern Dutchess Hospital* achieves an industry-leading average LOS of just **$1.4$ days**.
 
-### Strategic Recommendations for Hospital Operations
+### Strategic Recommendations
 
 To optimize bed turnover rate, lower per-patient operational expenses, and expand capacity, here are recommendations for targeted interventions:
 
